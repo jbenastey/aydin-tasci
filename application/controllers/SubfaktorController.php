@@ -57,7 +57,7 @@ class SubfaktorController extends CI_Controller
 				'subfaktor_nama' => $this->input->post('subfaktor'),
 			);
 			$this->subfaktor->edit_subfaktor($id, $data);
-			redirect('subfaktor');
+			redirect('faktor');
 		} else {
 			$data = array(
 				'subfaktor' => $this->subfaktor->lihat_satu($id)
@@ -71,6 +71,6 @@ class SubfaktorController extends CI_Controller
 	public function hapus($id)
 	{
 		$this->subfaktor->hapus_subfaktor($id);
-		redirect('subfaktor');
+		redirect('faktor');
 	}
 }
