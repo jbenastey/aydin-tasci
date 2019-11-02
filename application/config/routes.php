@@ -62,6 +62,13 @@ $route['subfaktor/edit/(:any)'] = 'SubfaktorController/edit/$1';
 $route['subfaktor/lihat/(:any)'] = 'SubfaktorController/lihat/$1';
 $route['subfaktor/hapus/(:any)'] = 'SubfaktorController/hapus/$1';
 
+
+$route['pertanyaan'] = 'PertanyaanController';
+$route['pertanyaan/tambah'] = 'PertanyaanController/tambah';
+$route['pertanyaan/edit/(:any)'] = 'PertanyaanController/edit/$1';
+$route['pertanyaan/lihat/(:any)'] = 'PertanyaanController/lihat/$1';
+$route['pertanyaan/hapus/(:any)'] = 'PertanyaanController/hapus/$1';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -103,7 +103,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="pages/charts/flot.html" class="nav-link">
+								<a href="<?=base_url('pertanyaan')?>" class="nav-link <?php if ($this->uri->segment('1') == 'pertanyaan') echo 'active'?>">
 									<i class="fa fa-question nav-icon"></i>
 									<p>Pertanyaan</p>
 								</a>
