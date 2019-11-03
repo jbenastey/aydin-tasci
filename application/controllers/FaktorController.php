@@ -9,9 +9,9 @@ class FaktorController extends CI_Controller
 		$this->load->model('FaktorModel', 'faktor');
 		$this->load->model('SubfaktorModel', 'subfaktor');
 
-//		if (!$this->session->has_userdata('pengguna_id')) {
-//			redirect(base_url('login'));
-//		}
+		if (!$this->session->has_userdata('session_id')) {
+			redirect(base_url('login'));
+		}
 	}
 
 	public function index()

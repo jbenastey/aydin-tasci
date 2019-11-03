@@ -8,10 +8,11 @@ class PertanyaanController extends CI_Controller
 		parent::__construct();
 		$this->load->model('PertanyaanModel', 'pertanyaan');
 		$this->load->model('FaktorModel', 'faktor');
+		$this->load->model('SubfaktorModel', 'subfaktor');
 
-//		if (!$this->session->has_userdata('pengguna_id')) {
-//			redirect(base_url('login'));
-//		}
+		if (!$this->session->has_userdata('session_id')) {
+			redirect(base_url('login'));
+		}
 	}
 
 	public function index()
@@ -66,7 +67,9 @@ class PertanyaanController extends CI_Controller
 			redirect('pertanyaan');
 		} else {
 			$data = array(
-				'pertanyaan' => $this->pertanyaan->lihat_satu($id)
+				'pertanyaan' => $this->pertanyaan->lihat_satu($id),
+				'faktor' => $this->faktor->lihat_semua(),
+				'subfaktor' => $this->subfaktor->lihat_semua(),
 			);
 			$this->load->view('templates/header');
 			$this->load->view('pertanyaan/edit', $data);

@@ -69,6 +69,13 @@ $route['pertanyaan/edit/(:any)'] = 'PertanyaanController/edit/$1';
 $route['pertanyaan/lihat/(:any)'] = 'PertanyaanController/lihat/$1';
 $route['pertanyaan/hapus/(:any)'] = 'PertanyaanController/hapus/$1';
 
+$route['pengguna'] = 'AuthController/index';
+$route['pengguna/tambah'] = 'AuthController/tambah';
+$route['pengguna/hapus/(:any)'] = 'AuthController/hapus/$1';
+
+$route['login'] = 'AuthController/login';
+$route['logout'] = 'AuthController/logout';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

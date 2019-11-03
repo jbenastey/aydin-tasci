@@ -28,7 +28,7 @@
 										<?php
 										foreach ($faktor as $item):
 											?>
-											<option value="<?=$item['faktor_id']?>"><?=$item['faktor_nama']?></option>
+											<option value="<?=$item['faktor_id']?>" <?php if ($pertanyaan['pertanyaan_faktor_id'] == $item['faktor_id']) echo 'selected'?>><?=$item['faktor_nama']?></option>
 										<?php
 										endforeach;
 										?>
@@ -42,7 +42,7 @@
 								</div>
 								<div class="form-group">
 									<label for="">Pertanyaan</label>
-									<textarea name="pertanyaan" class="form-control" id="" cols="30" rows="5"></textarea>
+									<textarea name="pertanyaan" class="form-control" id="" cols="30" rows="5"><?=$pertanyaan['pertanyaan_isi']?></textarea>
 								</div>
 							</div>
 							<!-- /.card-body -->

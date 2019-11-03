@@ -48,7 +48,7 @@
 										</ul>
 										<?php
 											else:
-												echo 'belum ada subfaktor'; break;
+//												echo 'belum ada subfaktor'; break;
 										endif;
 										endforeach;
 										?>
