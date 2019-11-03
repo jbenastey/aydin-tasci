@@ -32,6 +32,7 @@ class PertanyaanController extends CI_Controller
 				'pertanyaan_isi' => $this->input->post('pertanyaan'),
 				'pertanyaan_faktor_id' => $this->input->post('faktor'),
 				'pertanyaan_subfaktor_id' => $this->input->post('subfaktor'),
+				'pertanyaan_jenis' => $this->input->post('responden'),
 			);
 			$this->pertanyaan->tambah_pertanyaan($data);
 			redirect('pertanyaan');
@@ -62,6 +63,7 @@ class PertanyaanController extends CI_Controller
 				'pertanyaan_isi' => $this->input->post('pertanyaan'),
 				'pertanyaan_faktor_id' => $this->input->post('faktor'),
 				'pertanyaan_subfaktor_id' => $this->input->post('subfaktor'),
+				'pertanyaan_jenis' => $this->input->post('responden'),
 			);
 			$this->pertanyaan->edit_pertanyaan($id, $data);
 			redirect('pertanyaan');

@@ -62,12 +62,15 @@ $route['subfaktor/edit/(:any)'] = 'SubfaktorController/edit/$1';
 $route['subfaktor/lihat/(:any)'] = 'SubfaktorController/lihat/$1';
 $route['subfaktor/hapus/(:any)'] = 'SubfaktorController/hapus/$1';
 
-
 $route['pertanyaan'] = 'PertanyaanController';
 $route['pertanyaan/tambah'] = 'PertanyaanController/tambah';
 $route['pertanyaan/edit/(:any)'] = 'PertanyaanController/edit/$1';
 $route['pertanyaan/lihat/(:any)'] = 'PertanyaanController/lihat/$1';
 $route['pertanyaan/hapus/(:any)'] = 'PertanyaanController/hapus/$1';
+
+$route['kuesioner'] = 'KuesionerController';
+$route['kuesioner/tambah/(:any)'] = 'KuesionerController/tambah/$1';
+$route['kuesioner/lihat/(:any)'] = 'KuesionerController/lihat/$1';
 
 $route['pengguna'] = 'AuthController/index';
 $route['pengguna/tambah'] = 'AuthController/tambah';

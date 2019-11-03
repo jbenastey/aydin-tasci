@@ -110,6 +110,12 @@
 							</li>
 						</ul>
 					</li>
+					<li class="nav-item">
+						<a href="<?=base_url('kuesioner')?>" class="nav-link <?php if ($this->uri->segment('1') == 'kuesioner') echo 'active'?>">
+							<i class="nav-icon fa fa-file"></i>
+							<p class="text">Kuesioner</p>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- /.sidebar-menu -->

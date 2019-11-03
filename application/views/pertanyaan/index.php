@@ -28,6 +28,7 @@
 								<th>Faktor</th>
 								<th>Subfaktor</th>
 								<th>Pertanyaan</th>
+								<th>Responden</th>
 								<th>Aksi</th>
 							</tr>
 							</thead>
@@ -41,6 +42,7 @@
 									<td><?= $value['faktor_nama'] ?></td>
 									<td><?= $value['subfaktor_nama'] ?></td>
 									<td><?= $value['pertanyaan_isi'] ?></td>
+									<td><?= $value['pertanyaan_jenis'] ?></td>
 									<td>
 										<a href="<?= base_url('pertanyaan/edit/' . $value['pertanyaan_id']) ?>"
 										   class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
