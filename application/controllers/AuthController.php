@@ -24,6 +24,7 @@ class AuthController extends CI_Controller{
 				$session = array(
 					'session_id'=>$cek['pengguna_id'],
 					'session_username'=>$cek['pengguna_username'],
+					'session_nama'=>$cek['pengguna_nama'],
 					'session_password'=>$cek['pengguna_password'],
 					'session_level'=>$cek['pengguna_level']
 				);
@@ -59,6 +60,7 @@ class AuthController extends CI_Controller{
 	{
 		if (isset($_POST['simpan'])) {
 			$data = array(
+				'pengguna_nama' => $this->input->post('nama'),
 				'pengguna_username' => $this->input->post('username'),
 				'pengguna_password' => md5($this->input->post('password')),
 				'pengguna_level' => $this->input->post('level'),

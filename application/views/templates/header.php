@@ -72,7 +72,8 @@
 					<img src="<?=base_url()?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 				</div>
 				<div class="info">
-					<a href="#" class="d-block"><?= $this->session->userdata('session_username');?></a>
+					<a href="#" class="d-block"><?= $this->session->userdata('session_nama');?></a>
+					<a href="#" class="d-block"><?= $this->session->userdata('session_level');?></a>
 				</div>
 			</div>
 
@@ -96,6 +97,18 @@
 							</p>
 						</a>
 						<ul class="nav nav-treeview" style="display: block;">
+							<?php
+							if ($this->session->userdata('session_level') == 'admin'):
+							?>
+								<li class="nav-item">
+									<a href="<?=base_url('pengguna')?>" class="nav-link <?php if ($this->uri->segment('1') == 'pengguna') echo 'active'?>">
+										<i class="fa fa-users nav-icon"></i>
+										<p>Pengguna</p>
+									</a>
+								</li>
+							<?php
+							endif;
+							?>
 							<li class="nav-item">
 								<a href="<?=base_url('faktor')?>" class="nav-link <?php if ($this->uri->segment('1') == 'faktor') echo 'active'?>">
 									<i class="fa fa-circle-o nav-icon"></i>
