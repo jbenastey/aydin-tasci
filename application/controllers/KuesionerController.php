@@ -18,8 +18,10 @@ class KuesionerController extends CI_Controller
 
 	public function index()
 	{
+		$cek = $this->kuesioner->cek_kuesioner($this->session->userdata('session_id'));
 		$data = array(
 			'kuesioner' => $this->kuesioner->lihat_semua(),
+			'cek' => $cek
 		);
 		$this->load->view('templates/header');
 		$this->load->view('kuesioner/index', $data);

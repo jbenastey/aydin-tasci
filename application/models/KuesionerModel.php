@@ -17,6 +17,15 @@ class KuesionerModel extends CI_Model
 		return $query->result_array();
 	}
 
+	public function cek_kuesioner($id)
+	{
+		$this->db->from('kuesioner');
+		$this->db->join('pengguna','pengguna.pengguna_id = kuesioner.kuesioner_pengguna_id');
+		$this->db->where('pengguna_id',$id);
+		$query = $this->db->get();
+		return $query->row_array();
+	}
+
 	public function lihat_satu($id)
 	{
 		$this->db->from('kuesioner');

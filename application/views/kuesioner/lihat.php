@@ -42,7 +42,7 @@
 									<?php
 									foreach ($detail as $key2 => $value2):
 										if ($value['faktor_id'] == $value2['pertanyaan_faktor_id']):
-											if ($value2['pertanyaan_jenis'] == $this->session->userdata('session_level')):
+//											if ($value2['pertanyaan_jenis'] == $this->session->userdata('session_level')):
 												?>
 												<tr>
 													<td><?= $value2['pertanyaan_isi'] ?></td>
@@ -59,7 +59,7 @@
 															   name="pilihan<?= $value2['pertanyaan_id'] ?>" value="1" <?php if ($value2['detail_jawaban'] == 1) echo 'checked'?> disabled></td>
 												</tr>
 											<?php
-											endif;
+//											endif;
 										endif;
 									endforeach;
 									?>
