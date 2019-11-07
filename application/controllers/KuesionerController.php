@@ -11,17 +11,17 @@ class KuesionerController extends CI_Controller
 		$this->load->model('FaktorModel', 'faktor');
 		$this->load->model('PertanyaanModel', 'pertanyaan');
 
-		if (!$this->session->has_userdata('session_id')) {
-			redirect(base_url('login'));
-		}
+//		if (!$this->session->has_userdata('session_id')) {
+//			redirect(base_url('login'));
+//		}
 	}
 
 	public function index()
 	{
-		$cek = $this->kuesioner->cek_kuesioner($this->session->userdata('session_id'));
+//		$cek = $this->kuesioner->cek_kuesioner($this->session->userdata('session_id'));
 		$data = array(
 			'kuesioner' => $this->kuesioner->lihat_semua(),
-			'cek' => $cek
+//			'cek' => $cek
 		);
 		$this->load->view('templates/header');
 		$this->load->view('kuesioner/index', $data);
@@ -50,10 +50,18 @@ class KuesionerController extends CI_Controller
 //			die;
 			$data = array(
 				'kuesioner_id' => $kuesionerId,
-				'kuesioner_pengguna_id' => $this->session->userdata('session_id'),
+				'kuesioner_nama' => $this->input->post('nama'),
+				'kuesioner_nip_nik_nim' => $this->input->post('nik'),
+				'kuesioner_jabatan' => $this->input->post('jabatan'),
+				'kuesioner_fakultas' => $this->input->post('fakultas'),
 			);
+//			echo "<pre>";
+//			print_r ($data);
+//			echo "</pre>";die;
+
 			$this->kuesioner->tambah_kuesioner($data);
-			redirect('kuesioner');
+			$this->session->set_flashdata('alert', 'isi_kuesioner');
+			redirect(base_url());
 //			$this->pertanyaan->tambah_pertanyaan($data);
 //			redirect('pertanyaan');
 		} else {

@@ -22,15 +22,18 @@ class Welcome extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		if (!$this->session->has_userdata('session_id')) {
-			redirect(base_url('login'));
-		}
+//		if (!$this->session->has_userdata('session_id')) {
+//			redirect(base_url('login'));
+//		}
 	}
 
 	public function index()
 	{
-		$this->load->view('templates/header');
 		$this->load->view('index');
+	}
+	public function beranda(){
+		$this->load->view('templates/header');
+		$this->load->view('beranda');
 		$this->load->view('templates/footer');
 	}
 }

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/custom.css">
 	<!-- iCheck -->
 	<link rel="stylesheet" href="<?= base_url() ?>assets/plugins/iCheck/flat/blue.css">
 	<!-- Morris chart -->
@@ -28,6 +29,7 @@
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/dist/img/iconBuku2.png">
+	<link rel="shortcut icon" href="<?= base_url() ?>assets/dist/css/sweetalert2.min.css">
 </head>
 <body class="hold-transition sidebar-mini" style="overflow: hidden;">
 <div class="wrapper">
@@ -87,8 +89,8 @@
 					<!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 					<li class="nav-item">
-						<a href="<?= base_url() ?>"
-						   class="nav-link <?php if ($this->uri->segment('1') == null) echo 'active' ?>">
+						<a href="<?= base_url('beranda') ?>"
+						   class="nav-link <?php if ($this->uri->segment('1') == 'beranda') echo 'active' ?>">
 							<i class="nav-icon fa fa-home"></i>
 							<p class="text">Beranda</p>
 						</a>
@@ -105,13 +107,13 @@
 								</p>
 							</a>
 							<ul class="nav nav-treeview" style="display: block;">
-								<li class="nav-item">
-									<a href="<?= base_url('pengguna') ?>"
-									   class="nav-link <?php if ($this->uri->segment('1') == 'pengguna') echo 'active' ?>">
-										<i class="fa fa-users nav-icon"></i>
-										<p>Pengguna</p>
-									</a>
-								</li>
+<!--								<li class="nav-item">-->
+<!--									<a href="--><?//= base_url('pengguna') ?><!--"-->
+<!--									   class="nav-link --><?php //if ($this->uri->segment('1') == 'pengguna') echo 'active' ?><!--">-->
+<!--										<i class="fa fa-users nav-icon"></i>-->
+<!--										<p>Pengguna</p>-->
+<!--									</a>-->
+<!--								</li>-->
 								<li class="nav-item">
 									<a href="<?= base_url('faktor') ?>"
 									   class="nav-link <?php if ($this->uri->segment('1') == 'faktor') echo 'active' ?>">
@@ -128,16 +130,23 @@
 								</li>
 							</ul>
 						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('kuesioner') ?>"
+							   class="nav-link <?php if ($this->uri->segment('1') == 'kuesioner') echo 'active' ?>">
+								<i class="nav-icon fa fa-file"></i>
+								<p class="text">Kuesioner</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('laporan') ?>"
+							   class="nav-link <?php if ($this->uri->segment('1') == 'laporan') echo 'active' ?>">
+								<i class="nav-icon fa fa-files-o"></i>
+								<p class="text">Laporan</p>
+							</a>
+						</li>
 					<?php
 					endif;
 					?>
-					<li class="nav-item">
-						<a href="<?= base_url('kuesioner') ?>"
-						   class="nav-link <?php if ($this->uri->segment('1') == 'kuesioner') echo 'active' ?>">
-							<i class="nav-icon fa fa-file"></i>
-							<p class="text">Kuesioner</p>
-						</a>
-					</li>
 				</ul>
 			</nav>
 			<!-- /.sidebar-menu -->

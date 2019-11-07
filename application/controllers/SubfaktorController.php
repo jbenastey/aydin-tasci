@@ -31,6 +31,7 @@ class SubfaktorController extends CI_Controller
 				'subfaktor_faktor_id' => $id,
 			);
 			$this->subfaktor->tambah_subfaktor($data);
+			$this->session->set_flashdata('alert', 'tambah');
 			redirect('faktor/lihat/'.$id);
 		} else {
 			$data['id'] = $id;

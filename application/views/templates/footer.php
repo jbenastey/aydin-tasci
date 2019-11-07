@@ -57,11 +57,32 @@
 <script src="<?=base_url()?>assets/plugins/chart.js/Chart.min.js"></script>
 <script src="<?=base_url()?>assets/dist/js/demo.js"></script>
 <script src="<?=base_url()?>assets/dist/js/inventory.js"></script>
+<script src="<?=base_url()?>assets/dist/js/sweetalert2.all.js"></script>
+<script src="<?=base_url()?>assets/dist/js/sweetalert2.min.js"></script>
 
 <script>
 	$(function () {
 		$("#example1").DataTable();
 	});
 </script>
+
+<?php if ($this->session->flashdata('alert') == 'tambah') { ?>
+	<script>
+		Swal.fire(
+			'Data telah tersimpan',
+			'',
+			'success'
+		)
+	</script>
+<?php } ?>
+<?php if ($this->session->flashdata('alert') == 'isi_kuesioner') { ?>
+	<script>
+		Swal.fire(
+			'Terima kasih telah mengisi kuesioner!',
+			'',
+			'success'
+		)
+	</script>
+<?php } ?>
 </body>
 </html>

@@ -76,8 +76,12 @@ $route['pengguna'] = 'AuthController/index';
 $route['pengguna/tambah'] = 'AuthController/tambah';
 $route['pengguna/hapus/(:any)'] = 'AuthController/hapus/$1';
 
+$route['laporan'] = 'LaporanController/index';
+
 $route['login'] = 'AuthController/login';
 $route['logout'] = 'AuthController/logout';
+
+$route['beranda'] = 'welcome/beranda';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
