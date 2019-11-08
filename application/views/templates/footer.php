@@ -75,6 +75,24 @@
 		)
 	</script>
 <?php } ?>
+<?php if ($this->session->flashdata('alert') == 'edit') { ?>
+	<script>
+		Swal.fire(
+			'Data telah terubah',
+			'',
+			'success'
+		)
+	</script>
+<?php } ?>
+<?php if ($this->session->flashdata('alert') == 'hapus') { ?>
+	<script>
+		Swal.fire(
+			'Data telah terhapus',
+			'',
+			'success'
+		)
+	</script>
+<?php } ?>
 <?php if ($this->session->flashdata('alert') == 'isi_kuesioner') { ?>
 	<script>
 		Swal.fire(

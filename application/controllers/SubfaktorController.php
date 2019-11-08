@@ -58,6 +58,7 @@ class SubfaktorController extends CI_Controller
 				'subfaktor_nama' => $this->input->post('subfaktor'),
 			);
 			$this->subfaktor->edit_subfaktor($id, $data);
+			$this->session->set_flashdata('alert', 'edit');
 			redirect('faktor');
 		} else {
 			$data = array(
@@ -72,6 +73,7 @@ class SubfaktorController extends CI_Controller
 	public function hapus($id)
 	{
 		$this->subfaktor->hapus_subfaktor($id);
+		$this->session->set_flashdata('alert', 'hapus');
 		redirect('faktor');
 	}
 }

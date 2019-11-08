@@ -45,6 +45,8 @@
 			</div>
 			<div class="row">
 				<!-- /.col -->
+				<div class="col-4"></div>
+				<div class="col-4"></div>
 				<div class="col-4">
 					<button type="submit" class="btn btn-primary btn-block btn-flat" name="login">Login</button>
 				</div>
@@ -56,6 +58,7 @@
 			<!-- /.login-card-body -->
 		</div>
 	</div>
+	<a href="<?= base_url() ?>" class="float-right">Isi Kuesioner</a>
 	<!-- /.login-box -->
 
 	<!-- jQuery -->

@@ -32,6 +32,7 @@ class FaktorController extends CI_Controller
 				'faktor_nama' => $this->input->post('faktor'),
 			);
 			$this->faktor->tambah_faktor($data);
+			$this->session->set_flashdata('alert', 'tambah');
 			redirect('faktor');
 		} else {
 			$this->load->view('templates/header');
@@ -58,6 +59,7 @@ class FaktorController extends CI_Controller
 				'faktor_nama' => $this->input->post('faktor'),
 			);
 			$this->faktor->edit_faktor($id, $data);
+			$this->session->set_flashdata('alert', 'edit');
 			redirect('faktor');
 		} else {
 			$data = array(
@@ -72,6 +74,7 @@ class FaktorController extends CI_Controller
 	public function hapus($id)
 	{
 		$this->faktor->hapus_faktor($id);
+		$this->session->set_flashdata('alert', 'hapus');
 		redirect('faktor');
 	}
 }

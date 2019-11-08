@@ -35,6 +35,7 @@ class PertanyaanController extends CI_Controller
 				'pertanyaan_jenis' => $this->input->post('responden'),
 			);
 			$this->pertanyaan->tambah_pertanyaan($data);
+			$this->session->set_flashdata('alert', 'tambah');
 			redirect('pertanyaan');
 		} else {
 			$data = array(
@@ -66,6 +67,7 @@ class PertanyaanController extends CI_Controller
 				'pertanyaan_jenis' => $this->input->post('responden'),
 			);
 			$this->pertanyaan->edit_pertanyaan($id, $data);
+			$this->session->set_flashdata('alert', 'edit');
 			redirect('pertanyaan');
 		} else {
 			$data = array(
@@ -82,6 +84,7 @@ class PertanyaanController extends CI_Controller
 	public function hapus($id)
 	{
 		$this->pertanyaan->hapus_pertanyaan($id);
+		$this->session->set_flashdata('alert', 'hapus');
 		redirect('pertanyaan');
 	}
 
