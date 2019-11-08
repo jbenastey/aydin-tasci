@@ -38,6 +38,15 @@
 									<label>Subfaktor</label>
 									<select name="subfaktor" class="form-control" required id="subfaktor">
 										<option selected disabled>- Pilih Subfaktor -</option>
+										<?php
+										foreach($subfaktor as $key=>$value):
+										if($value['subfaktor_faktor_id'] == $pertanyaan['pertanyaan_faktor_id']):
+										?>
+											<option value="<?= $value['subfaktor_id'] ?>" <?php if ($pertanyaan['pertanyaan_subfaktor_id'] == $value['subfaktor_id']) echo 'selected'?>><?= $value['subfaktor_nama'] ?></option>
+										<?php
+										endif;
+										endforeach;
+										?>
 									</select>
 								</div>
 								<div class="form-group">
