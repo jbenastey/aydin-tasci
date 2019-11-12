@@ -1,6 +1,8 @@
 </div>
 <!-- /.content-wrapper -->
-<footer class="main-footer d-print-none">
+<footer class="main-footer d-print-none" <?php
+if($this->session->userdata('session_id') == null){echo 'style="display:none;"';}
+?>>
 	<strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
 	All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">

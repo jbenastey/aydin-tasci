@@ -31,11 +31,15 @@
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/dist/img/iconBuku2.png">
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/dist/css/sweetalert2.min.css">
 </head>
-<body class="hold-transition sidebar-mini" style="overflow: hidden;">
+<body class="hold-transition sidebar-mini <?php
+if($this->session->userdata('session_id') == null){echo 'sidebar-collapse';}
+?>" style="overflow: hidden;">
 <div class="wrapper">
 
 	<!-- Navbar -->
-	<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+	<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom" <?php
+	if($this->session->userdata('session_id') == null){echo 'style="display:none;"';}
+	?>>
 		<!-- Left navbar links -->
 		<ul class="navbar-nav">
 			<li class="nav-item">
@@ -59,7 +63,9 @@
 	<!-- /.navbar -->
 
 	<!-- Main Sidebar Container -->
-	<aside class="main-sidebar sidebar-dark-primary elevation-4">
+	<aside class="main-sidebar sidebar-dark-primary elevation-4" <?php
+	if($this->session->userdata('session_id') == null){echo 'style="display:none;"';}
+	?>>
 		<!-- Brand Logo -->
 		<a href="<?= base_url() ?>" class="brand-link">
 			<img src="<?= base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
@@ -155,7 +161,9 @@
 	</aside>
 
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
+	<div class="content-wrapper <?php
+	if($this->session->userdata('session_id') == null){echo 'mr-lg-5';}
+	?>">
 		<?php if ($this->session->flashdata('alert') == 'stok_kurang') { ?>
 			<div class="alert alert-danger animated fadeInDown" role="alert">
 				<button type="button" class="close" data-dismiss="alert"></button>
