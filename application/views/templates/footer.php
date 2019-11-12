@@ -77,6 +77,15 @@ if($this->session->userdata('session_id') == null){echo 'style="display:none;"';
 		)
 	</script>
 <?php } ?>
+<?php if ($this->session->flashdata('alert') == 'gagal_tambah') { ?>
+	<script>
+		Swal.fire(
+			'Data Gagal tersimpan',
+			'',
+			'error'
+		)
+	</script>
+<?php } ?>
 <?php if ($this->session->flashdata('alert') == 'edit') { ?>
 	<script>
 		Swal.fire(

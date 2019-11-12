@@ -31,9 +31,15 @@ class FaktorController extends CI_Controller
 			$data = array(
 				'faktor_nama' => $this->input->post('faktor'),
 			);
-			$this->faktor->tambah_faktor($data);
-			$this->session->set_flashdata('alert', 'tambah');
-			redirect('faktor');
+			$cek = $this->faktor->cek_faktor(strtolower($data['faktor_nama']));
+			if ($cek == null){
+				$this->faktor->tambah_faktor($data);
+				$this->session->set_flashdata('alert', 'tambah');
+				redirect('faktor');
+			} else {
+				$this->session->set_flashdata('alert', 'gagal_tambah');
+				redirect('faktor');
+			}
 		} else {
 			$this->load->view('templates/header');
 			$this->load->view('faktor/tambah');

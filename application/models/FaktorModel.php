@@ -49,4 +49,11 @@ class FaktorModel extends CI_Model
 		$this->db->where('faktor_id', $id);
 		$this->db->delete('faktor');
 	}
+
+	public function cek_faktor($nama){
+		$this->db->from('faktor');
+		$this->db->where('faktor_nama', strtolower($nama));
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
 }
