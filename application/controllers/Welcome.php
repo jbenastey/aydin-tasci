@@ -25,6 +25,8 @@ class Welcome extends CI_Controller {
 //		if (!$this->session->has_userdata('session_id')) {
 //			redirect(base_url('login'));
 //		}
+		$this->load->model('KuesionerModel','kuesioner');
+		$this->load->model('FaktorModel','faktor');
 	}
 
 	public function index()
@@ -35,5 +37,12 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/header');
 		$this->load->view('beranda');
 		$this->load->view('templates/footer');
+	}
+	public function grafik($responden){
+		$data = array(
+			'grafik' => $this->kuesioner->lihat_detail_grafik($responden),
+			'faktor' => $this->faktor->lihat_semua()
+		);
+		echo json_encode($data);
 	}
 }

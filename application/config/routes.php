@@ -84,6 +84,8 @@ $route['logout'] = 'AuthController/logout';
 
 $route['beranda'] = 'welcome/beranda';
 
+$route['grafik/(:any)'] = 'welcome/grafik/$1';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

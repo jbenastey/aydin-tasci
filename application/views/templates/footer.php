@@ -58,7 +58,7 @@ if($this->session->userdata('session_id') == null){echo 'style="display:none;"';
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url()?>assets/plugins/chart.js/Chart.min.js"></script>
 <script src="<?=base_url()?>assets/dist/js/demo.js"></script>
-<script src="<?=base_url()?>assets/dist/js/inventory.js"></script>
+<script src="<?=base_url()?>assets/dist/js/grafik/grafik.js"></script>
 <script src="<?=base_url()?>assets/dist/js/sweetalert2.all.js"></script>
 <script src="<?=base_url()?>assets/dist/js/sweetalert2.min.js"></script>
 
