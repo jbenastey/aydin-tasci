@@ -37,39 +37,53 @@
 									<td><?= $value['faktor_nama'] ?></td>
 									<td>
 										<?php
-										$total = 0;
-										$jumlah = 0;
-										foreach ($detail as $key2 => $value2):
-											if ($value2['pertanyaan_jenis'] == 'dosen') :
-											if ($value2['faktor_id'] == $value['faktor_id']):
-												$total = $total + $value2['detail_jawaban'];
-												$jumlah++;
-											endif;
-											endif;
-										endforeach;
-										$nilai = $total / $jumlah;
+										$nilai = null;
+										if ($detail == null):
+											?>
+											Kuesioner belum diisi
+										<?php
+										else:
+											$total = 0;
+											$jumlah = 0;
+											foreach ($detail as $key2 => $value2):
+												if ($value2['pertanyaan_jenis'] == 'dosen') :
+													if ($value2['faktor_id'] == $value['faktor_id']):
+														$total = $total + $value2['detail_jawaban'];
+														$jumlah++;
+													endif;
+												endif;
+											endforeach;
+											$nilai = $total / $jumlah;
+											?>
+											<?= $nilai ?>
+										<?php
+										endif
 										?>
-										<?= $nilai ?>
 									</td>
 									<td>
 										<?php
-										if($nilai >= 1 && $nilai <= 2.6):
-										?>
-											Belum siap dan butuh banyak peningkatan
+										if ($nilai != null):
+											if ($nilai >= 1 && $nilai <= 2.6):
+												?>
+												Belum siap dan butuh banyak peningkatan
+											<?php
+											elseif ($nilai > 2.6 && $nilai <= 3.4):
+												?>
+												Tidak siap dan butuh sedikit peningkatan
+											<?php
+											elseif ($nilai > 3.4 && $nilai <= 4.2):
+												?>
+												Siap, tetapi masih butuh sedikit peningkatan
+											<?php
+											elseif ($nilai > 4.2 && $nilai <= 5):
+												?>
+												Siap dan penerapan dapat dilakukan
+											<?php
+											endif;
+										else: ?>
+											Kuesioner belum diisi
 										<?php
-										elseif($nilai > 2.6 && $nilai <= 3.4):
-										?>
-											Tidak siap dan butuh sedikit peningkatan
-										<?php
-										elseif($nilai > 3.4 && $nilai <= 4.2):
-										?>
-											Siap, tetapi masih butuh sedikit peningkatan
-										<?php
-										elseif($nilai > 4.2 && $nilai <= 5):
-										?>
-											Siap dan penerapan dapat dilakukan
-										<?php
-										endif
+										endif;
 										?>
 									</td>
 								</tr>
@@ -86,7 +100,7 @@
 						Data Laporan Mahasiswa
 					</div>
 					<div class="card-body">
-						<table  class="table table-bordered ">
+						<table class="table table-bordered ">
 							<thead>
 							<tr>
 								<th>No</th>
@@ -105,39 +119,53 @@
 									<td><?= $value['faktor_nama'] ?></td>
 									<td>
 										<?php
-										$total = 0;
-										$jumlah = 0;
-										foreach ($detail as $key2 => $value2):
-											if ($value2['pertanyaan_jenis'] == 'mahasiswa') :
-											if ($value2['faktor_id'] == $value['faktor_id']):
-												$total = $total + $value2['detail_jawaban'];
-												$jumlah++;
-											endif;
-											endif;
-										endforeach;
-										$nilai = $total / $jumlah;
+										$nilai = null;
+										if ($detail == null):
+											?>
+											Kuesioner belum diisi
+										<?php
+										else:
+											$total = 0;
+											$jumlah = 0;
+											foreach ($detail as $key2 => $value2):
+												if ($value2['pertanyaan_jenis'] == 'mahasiswa') :
+													if ($value2['faktor_id'] == $value['faktor_id']):
+														$total = $total + $value2['detail_jawaban'];
+														$jumlah++;
+													endif;
+												endif;
+											endforeach;
+											$nilai = $total / $jumlah;
+											?>
+											<?= $nilai ?>
+										<?php
+										endif
 										?>
-										<?= $nilai ?>
 									</td>
 									<td>
 										<?php
-										if($nilai >= 1 && $nilai <= 2.6):
-										?>
-											Belum siap dan butuh banyak peningkatan
+										if ($nilai != null):
+											if ($nilai >= 1 && $nilai <= 2.6):
+												?>
+												Belum siap dan butuh banyak peningkatan
+											<?php
+											elseif ($nilai > 2.6 && $nilai <= 3.4):
+												?>
+												Tidak siap dan butuh sedikit peningkatan
+											<?php
+											elseif ($nilai > 3.4 && $nilai <= 4.2):
+												?>
+												Siap, tetapi masih butuh sedikit peningkatan
+											<?php
+											elseif ($nilai > 4.2 && $nilai <= 5):
+												?>
+												Siap dan penerapan dapat dilakukan
+											<?php
+											endif;
+										else: ?>
+											Kuesioner belum diisi
 										<?php
-										elseif($nilai > 2.6 && $nilai <= 3.4):
-										?>
-											Tidak siap dan butuh sedikit peningkatan
-										<?php
-										elseif($nilai > 3.4 && $nilai <= 4.2):
-										?>
-											Siap, tetapi masih butuh sedikit peningkatan
-										<?php
-										elseif($nilai > 4.2 && $nilai <= 5):
-										?>
-											Siap dan penerapan dapat dilakukan
-										<?php
-										endif
+										endif;
 										?>
 									</td>
 								</tr>
