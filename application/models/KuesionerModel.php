@@ -45,6 +45,18 @@ class KuesionerModel extends CI_Model
 		return $query->result_array();
 	}
 
+	public function lihat_faktor($faktor)
+	{
+		$this->db->from('kuesioner_detail');
+		$this->db->join('kuesioner','kuesioner.kuesioner_id = kuesioner_detail.detail_kuesioner_id');
+//		$this->db->join('pengguna','pengguna.pengguna_id = kuesioner.kuesioner_pengguna_id');
+		$this->db->join('pertanyaan','pertanyaan.pertanyaan_id = kuesioner_detail.detail_pertanyaan_id');
+		$this->db->join('faktor','faktor.faktor_id = pertanyaan.pertanyaan_faktor_id');
+		$this->db->where('faktor_nama', $faktor);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	public function lihat_semua_detail()
 	{
 		$this->db->from('kuesioner_detail');

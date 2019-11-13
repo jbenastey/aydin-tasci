@@ -24,12 +24,14 @@
 								<th>No</th>
 								<th>Faktor</th>
 								<th>Rentang Nilai</th>
-								<th>Kategori</th>
+								<th>Keterangan</th>
+								<th>Aksi</th>
 							</tr>
 							</thead>
 							<tbody>
 							<?php
 							$no = 1;
+							$jumlahSemua = 0;
 							foreach ($faktor as $key => $value):
 								?>
 								<tr>
@@ -54,6 +56,7 @@
 												endif;
 											endforeach;
 											$nilai = $total / $jumlah;
+											$jumlahSemua = $jumlahSemua + $nilai;
 											?>
 											<?= $nilai ?>
 										<?php
@@ -63,35 +66,30 @@
 									<td>
 										<?php
 										if ($nilai != null):
-											if ($nilai >= 1 && $nilai <= 2.6):
-												?>
-												Belum siap dan butuh banyak peningkatan
-											<?php
-											elseif ($nilai > 2.6 && $nilai <= 3.4):
-												?>
-												Tidak siap dan butuh sedikit peningkatan
-											<?php
-											elseif ($nilai > 3.4 && $nilai <= 4.2):
-												?>
-												Siap, tetapi masih butuh sedikit peningkatan
-											<?php
-											elseif ($nilai > 4.2 && $nilai <= 5):
-												?>
-												Siap dan penerapan dapat dilakukan
-											<?php
-											endif;
+											echo kategori($nilai);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
 										endif;
 										?>
 									</td>
+									<td><a href="<?= base_url('laporan/detail/dosen/'.$value['faktor_nama']) ?>" class="btn btn-primary btn-sm" title="Lihat Detail"> <i class="fa fa-eye"></i>  </a></td>
 								</tr>
 								<?php
 								$no++;
 							endforeach;
 							?>
 							</tbody>
+							<tfoot>
+							<tr>
+								<th colspan="2">Rata-rata</th>
+								<th><?php
+									$rataRata = $jumlahSemua / ($no-1);
+									echo $rataRata;
+									?></th>
+								<th colspan="2"><?= kategori($rataRata) ?></th>
+							</tr>
+							</tfoot>
 						</table>
 					</div>
 				</div>
@@ -106,7 +104,7 @@
 								<th>No</th>
 								<th>Faktor</th>
 								<th>Rentang Nilai</th>
-								<th>Kategori</th>
+								<th>Keterangan</th>
 							</tr>
 							</thead>
 							<tbody>

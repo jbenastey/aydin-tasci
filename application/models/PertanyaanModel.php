@@ -18,6 +18,16 @@ class PertanyaanModel extends CI_Model
 		return $query->result_array();
 	}
 
+	public function lihat_faktor($faktor)
+	{
+		$this->db->from('pertanyaan');
+		$this->db->join('faktor','faktor.faktor_id = pertanyaan.pertanyaan_faktor_id');
+		$this->db->join('subfaktor','subfaktor.subfaktor_id = pertanyaan.pertanyaan_subfaktor_id');
+		$this->db->where('faktor_nama',$faktor);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	public function lihat_satu($id)
 	{
 		$this->db->from('pertanyaan');
