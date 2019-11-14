@@ -32,13 +32,24 @@
 						<h3 id="laporan">Laporan <?= ucfirst($responden) ?> Faktor <?= $faktor ?></h3>
 						<div class="excel">
 							<table class="table table-bordered" id="excel">
-								<thead>
+								<thead class="text-center">
 								<tr>
-									<th>Nomor</th>
-									<th>Pertanyaan</th>
-									<th>Nilai</th>
-									<th>Rata-rata</th>
-									<th>Keterangan</th>
+									<th rowspan="2">Nomor</th>
+									<th rowspan="2">Pertanyaan</th>
+									<th colspan="8">Fakultas</th>
+									<th rowspan="2">Nilai</th>
+									<th rowspan="2">Rata-rata</th>
+									<th rowspan="2">Keterangan</th>
+								</tr>
+								<tr>
+									<th>FST</th>
+									<th>FSH</th>
+									<th>FTK</th>
+									<th>FUD</th>
+									<th>FDK</th>
+									<th>FPP</th>
+									<th>FES</th>
+									<th>FPS</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -55,13 +66,46 @@
 											<?php
 											$nilai = 0;
 											$hitung = 0;
+											$fst = 0;
+											$fsh = 0;
+											$ftk = 0;
+											$fud = 0;
+											$fdk = 0;
+											$fpp = 0;
+											$fes = 0;
+											$fps = 0;
 											foreach ($jawaban as $key2 => $value2):
 												if ($value['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
 													$nilai = $nilai + $value2['detail_jawaban'];
 													$hitung++;
+													if ($value2['kuesioner_fakultas'] == 'fst'){
+														$fst+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'fasih'){
+														$fsh+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'ftk'){
+														$ftk+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'fud'){
+														$fud+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'fdk'){
+														$fdk+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'fapertapet'){
+														$fpp+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'fekonsos'){
+														$fes+=$value2['detail_jawaban'];
+													}elseif ($value2['kuesioner_fakultas'] == 'fpsi'){
+														$fps+=$value2['detail_jawaban'];
+													}
 												endif;
 											endforeach;
 											?>
+											<td><?= $fst ?></td>
+											<td><?= $fsh ?></td>
+											<td><?= $ftk ?></td>
+											<td><?= $fud ?></td>
+											<td><?= $fdk ?></td>
+											<td><?= $fpp ?></td>
+											<td><?= $fes ?></td>
+											<td><?= $fps ?></td>
 											<td><?= $nilai ?></td>
 											<td><?= $rata = $nilai / $hitung ?></td>
 											<td><?= kategori($rata) ?></td>
@@ -76,7 +120,7 @@
 								</tbody>
 								<tfoot>
 								<tr>
-									<th colspan="2">Total</th>
+									<th colspan="10">Total</th>
 									<th><?= $jumlahSemua ?></th>
 									<th><?= $rataRata / ($no - 1) ?></th>
 									<th><?= kategori($rataRata / ($no - 1)) ?></th>

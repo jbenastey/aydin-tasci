@@ -33,6 +33,8 @@
 </head>
 <body class="hold-transition sidebar-mini <?php
 if($this->session->userdata('session_id') == null){echo 'sidebar-collapse';}
+?><?php
+if($this->uri->segment(2) == 'detail'){echo 'sidebar-collapse';}
 ?>" style="overflow: hidden;">
 <div class="wrapper">
 
