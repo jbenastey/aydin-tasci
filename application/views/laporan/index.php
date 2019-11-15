@@ -31,7 +31,7 @@
 							<tbody>
 							<?php
 							$no = 1;
-							$jumlahSemua = 0;
+							$jumlahSemuanya = 0;
 							foreach ($faktor as $key => $value):
 								?>
 								<tr>
@@ -45,35 +45,120 @@
 											Kuesioner belum diisi
 										<?php
 										else:
-											$total = 0;
-											$jumlah = 0;
-											foreach ($detail as $key2 => $value2):
-												if ($value2['pertanyaan_jenis'] == 'dosen') :
-													if ($value2['faktor_id'] == $value['faktor_id']):
-														$total = $total + $value2['detail_jawaban'];
-														$jumlah++;
+											$nomor = 0;
+											$jumlahSemua = 0;
+											$rataRata = 0;
+											foreach ($pertanyaan as $key3 => $value3):
+												if ($value['faktor_id'] == $value3['faktor_id']):
+													if ($value3['pertanyaan_jenis'] == 'dosen'):
+														$nomor++;
+														$nilai = 0;
+														$hitung = 0;
+														$fst = 0;
+														$fstTotal = 0;
+														$fsh = 0;
+														$fshTotal = 0;
+														$ftk = 0;
+														$ftkTotal = 0;
+														$fud = 0;
+														$fudTotal = 0;
+														$fdk = 0;
+														$fdkTotal = 0;
+														$fpp = 0;
+														$fppTotal = 0;
+														$fes = 0;
+														$fesTotal = 0;
+														$fps = 0;
+														$fpsTotal = 0;
+														foreach ($detail as $key2 => $value2):
+															if ($value3['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
+																if ($value2['kuesioner_fakultas'] == 'fst') {
+																	$fstTotal += $value2['detail_jawaban'];
+																	$fst++;
+																	if ($fst == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fasih') {
+																	$fshTotal += $value2['detail_jawaban'];
+																	$fsh++;
+																	if ($fsh == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'ftk') {
+																	$ftkTotal += $value2['detail_jawaban'];
+																	$ftk++;
+																	if ($ftk == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fud') {
+																	$fudTotal += $value2['detail_jawaban'];
+																	$fud++;
+																	if ($fud == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fdk') {
+																	$fdkTotal += $value2['detail_jawaban'];
+																	$fdk++;
+																	if ($fdk == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fapertapet') {
+																	$fppTotal += $value2['detail_jawaban'];
+																	$fpp++;
+																	if ($fpp == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fekonsos') {
+																	$fesTotal += $value2['detail_jawaban'];
+																	$fes++;
+																	if ($fes == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fpsi') {
+																	$fpsTotal += $value2['detail_jawaban'];
+																	$fps++;
+																	if ($fps == 1) {
+																		$hitung++;
+																	}
+																}
+															endif;
+														endforeach;
+														?>
+														<?php $nilai = ($fstTotal / $fst) +
+														($fshTotal / $fsh) +
+														($ftkTotal / $ftk) +
+														($fudTotal / $fud) +
+														($fdkTotal / $fdk) +
+														($fppTotal / $fpp) +
+														($fesTotal / $fes) +
+														($fpsTotal / $fps) ?>
+
+														<?php $rata = $nilai / $hitung ?>
+														<?php
+														$jumlahSemua += $nilai;
+														$rataRata += $rata;
 													endif;
 												endif;
 											endforeach;
-											$nilai = $total / $jumlah;
-											$jumlahSemua = $jumlahSemua + $nilai;
-											?>
-											<?= $nilai ?>
-										<?php
-										endif
+											$jumlahSemuanya+=($rataRata/$nomor);
+											echo $rataRata/$nomor;
+										endif;
 										?>
 									</td>
 									<td>
 										<?php
-										if ($nilai != null):
-											echo kategori($nilai);
+										if ($rataRata/$nomor != null):
+											echo kategori($rataRata/$nomor);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
 										endif;
 										?>
 									</td>
-									<td><a href="<?= base_url('laporan/detail/dosen/'.$value['faktor_nama']) ?>" class="btn btn-primary btn-sm" title="Lihat Detail"> <i class="fa fa-eye"></i>  </a></td>
+									<td><a href="<?= base_url('laporan/detail/dosen/' . $value['faktor_nama']) ?>"
+										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
+												class="fa fa-eye"></i>
+										</a></td>
 								</tr>
 								<?php
 								$no++;
@@ -84,10 +169,9 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									$rataRata = $jumlahSemua / ($no-1);
-									echo $rataRata;
+									echo $jumlahSemuanya / ($no - 1);
 									?></th>
-								<th colspan="2"><?= kategori($rataRata) ?></th>
+								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
 							</tfoot>
 						</table>
@@ -111,7 +195,7 @@
 							<tbody>
 							<?php
 							$no = 1;
-							$jumlahSemua = 0;
+							$jumlahSemuanya = 0;
 							foreach ($faktor as $key => $value):
 								?>
 								<tr>
@@ -125,35 +209,120 @@
 											Kuesioner belum diisi
 										<?php
 										else:
-											$total = 0;
-											$jumlah = 0;
-											foreach ($detail as $key2 => $value2):
-												if ($value2['pertanyaan_jenis'] == 'mahasiswa') :
-													if ($value2['faktor_id'] == $value['faktor_id']):
-														$total = $total + $value2['detail_jawaban'];
-														$jumlah++;
+											$nomor = 0;
+											$jumlahSemua = 0;
+											$rataRata = 0;
+											foreach ($pertanyaan as $key3 => $value3):
+												if ($value['faktor_id'] == $value3['faktor_id']):
+													if ($value3['pertanyaan_jenis'] == 'mahasiswa'):
+														$nomor++;
+														$nilai = 0;
+														$hitung = 0;
+														$fst = 0;
+														$fstTotal = 0;
+														$fsh = 0;
+														$fshTotal = 0;
+														$ftk = 0;
+														$ftkTotal = 0;
+														$fud = 0;
+														$fudTotal = 0;
+														$fdk = 0;
+														$fdkTotal = 0;
+														$fpp = 0;
+														$fppTotal = 0;
+														$fes = 0;
+														$fesTotal = 0;
+														$fps = 0;
+														$fpsTotal = 0;
+														foreach ($detail as $key2 => $value2):
+															if ($value3['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
+																if ($value2['kuesioner_fakultas'] == 'fst') {
+																	$fstTotal += $value2['detail_jawaban'];
+																	$fst++;
+																	if ($fst == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fasih') {
+																	$fshTotal += $value2['detail_jawaban'];
+																	$fsh++;
+																	if ($fsh == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'ftk') {
+																	$ftkTotal += $value2['detail_jawaban'];
+																	$ftk++;
+																	if ($ftk == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fud') {
+																	$fudTotal += $value2['detail_jawaban'];
+																	$fud++;
+																	if ($fud == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fdk') {
+																	$fdkTotal += $value2['detail_jawaban'];
+																	$fdk++;
+																	if ($fdk == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fapertapet') {
+																	$fppTotal += $value2['detail_jawaban'];
+																	$fpp++;
+																	if ($fpp == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fekonsos') {
+																	$fesTotal += $value2['detail_jawaban'];
+																	$fes++;
+																	if ($fes == 1) {
+																		$hitung++;
+																	}
+																} elseif ($value2['kuesioner_fakultas'] == 'fpsi') {
+																	$fpsTotal += $value2['detail_jawaban'];
+																	$fps++;
+																	if ($fps == 1) {
+																		$hitung++;
+																	}
+																}
+															endif;
+														endforeach;
+														?>
+														<?php $nilai = ($fstTotal / $fst) +
+														($fshTotal / $fsh) +
+														($ftkTotal / $ftk) +
+														($fudTotal / $fud) +
+														($fdkTotal / $fdk) +
+														($fppTotal / $fpp) +
+														($fesTotal / $fes) +
+														($fpsTotal / $fps) ?>
+
+														<?php $rata = $nilai / $hitung ?>
+														<?php
+														$jumlahSemua += $nilai;
+														$rataRata += $rata;
 													endif;
 												endif;
 											endforeach;
-											$nilai = $total / $jumlah;
-											$jumlahSemua = $jumlahSemua + $nilai;
-											?>
-											<?= $nilai ?>
-										<?php
-										endif
+											$jumlahSemuanya+=($rataRata/$nomor);
+											echo $rataRata/$nomor;
+										endif;
 										?>
 									</td>
 									<td>
 										<?php
-										if ($nilai != null):
-											echo kategori($nilai);
+										if ($rataRata/$nomor != null):
+											echo kategori($rataRata/$nomor);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
 										endif;
 										?>
 									</td>
-									<td><a href="<?= base_url('laporan/detail/mahasiswa/'.$value['faktor_nama']) ?>" class="btn btn-primary btn-sm" title="Lihat Detail"> <i class="fa fa-eye"></i>  </a></td>
+									<td><a href="<?= base_url('laporan/detail/mahasiswa/' . $value['faktor_nama']) ?>"
+										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
+												class="fa fa-eye"></i>
+										</a></td>
 								</tr>
 								<?php
 								$no++;
@@ -164,10 +333,9 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									$rataRata = $jumlahSemua / ($no-1);
-									echo $rataRata;
+									echo $jumlahSemuanya / ($no - 1);
 									?></th>
-								<th colspan="2"><?= kategori($rataRata) ?></th>
+								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
 							</tfoot>
 						</table>

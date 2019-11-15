@@ -1,9 +1,10 @@
 <style>
-	@media print{
-		#printable{
-			height:1200px;
+	@media print {
+		#printable {
+			height: 1200px;
 		}
-		#laporan{
+
+		#laporan {
 			display: block;
 		}
 	}
@@ -25,8 +26,10 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header d-print-none">
-						<button onclick="excel()" class="btn btn-outline-success btn-sm float-right ml-1" title="Export Excel"><i class="fa fa-file-excel-o"></i></button>
-						<button onclick="window.print()" class="btn btn-outline-danger btn-sm float-right" title="Export PDF"><i class="fa fa-file-pdf-o"></i></button>
+						<button onclick="excel()" class="btn btn-outline-success btn-sm float-right ml-1"
+								title="Export Excel"><i class="fa fa-file-excel-o"></i></button>
+						<button onclick="window.print()" class="btn btn-outline-danger btn-sm float-right"
+								title="Export PDF"><i class="fa fa-file-pdf-o"></i></button>
 					</div>
 					<div class="card-body" id="printable">
 						<h3 id="laporan">Laporan <?= ucfirst($responden) ?> Faktor <?= $faktor ?></h3>
@@ -67,46 +70,91 @@
 											$nilai = 0;
 											$hitung = 0;
 											$fst = 0;
+											$fstTotal = 0;
 											$fsh = 0;
+											$fshTotal = 0;
 											$ftk = 0;
+											$ftkTotal = 0;
 											$fud = 0;
+											$fudTotal = 0;
 											$fdk = 0;
+											$fdkTotal = 0;
 											$fpp = 0;
+											$fppTotal = 0;
 											$fes = 0;
+											$fesTotal = 0;
 											$fps = 0;
+											$fpsTotal = 0;
 											foreach ($jawaban as $key2 => $value2):
 												if ($value['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
-													$nilai = $nilai + $value2['detail_jawaban'];
-													$hitung++;
-													if ($value2['kuesioner_fakultas'] == 'fst'){
-														$fst+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'fasih'){
-														$fsh+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'ftk'){
-														$ftk+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'fud'){
-														$fud+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'fdk'){
-														$fdk+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'fapertapet'){
-														$fpp+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'fekonsos'){
-														$fes+=$value2['detail_jawaban'];
-													}elseif ($value2['kuesioner_fakultas'] == 'fpsi'){
-														$fps+=$value2['detail_jawaban'];
+													if ($value2['kuesioner_fakultas'] == 'fst') {
+														$fstTotal += $value2['detail_jawaban'];
+														$fst++;
+														if($fst == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'fasih') {
+														$fshTotal += $value2['detail_jawaban'];
+														$fsh++;
+														if($fsh == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'ftk') {
+														$ftkTotal += $value2['detail_jawaban'];
+														$ftk++;
+														if($ftk == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'fud') {
+														$fudTotal += $value2['detail_jawaban'];
+														$fud++;
+														if($fud == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'fdk') {
+														$fdkTotal += $value2['detail_jawaban'];
+														$fdk++;
+														if($fdk == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'fapertapet') {
+														$fppTotal += $value2['detail_jawaban'];
+														$fpp++;
+														if($fpp == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'fekonsos') {
+														$fesTotal += $value2['detail_jawaban'];
+														$fes++;
+														if($fes == 1){
+															$hitung++;
+														}
+													} elseif ($value2['kuesioner_fakultas'] == 'fpsi') {
+														$fpsTotal += $value2['detail_jawaban'];
+														$fps++;
+														if($fps == 1){
+															$hitung++;
+														}
 													}
 												endif;
 											endforeach;
 											?>
-											<td><?= $fst ?></td>
-											<td><?= $fsh ?></td>
-											<td><?= $ftk ?></td>
-											<td><?= $fud ?></td>
-											<td><?= $fdk ?></td>
-											<td><?= $fpp ?></td>
-											<td><?= $fes ?></td>
-											<td><?= $fps ?></td>
-											<td><?= $nilai ?></td>
+											<td><?= $fstTotal / $fst ?></td>
+											<td><?= $fshTotal / $fsh ?></td>
+											<td><?= $ftkTotal / $ftk ?></td>
+											<td><?= $fudTotal / $fud ?></td>
+											<td><?= $fdkTotal / $fdk ?></td>
+											<td><?= $fppTotal / $fpp ?></td>
+											<td><?= $fesTotal / $fes ?></td>
+											<td><?= $fpsTotal / $fps ?></td>
+											<td><?= $nilai = ($fstTotal / $fst) +
+													($fshTotal / $fsh) +
+													($ftkTotal / $ftk) +
+													($fudTotal / $fud) +
+													($fdkTotal / $fdk) +
+													($fppTotal / $fpp) +
+													($fesTotal / $fes) +
+													($fpsTotal / $fps) ?></td>
 											<td><?= $rata = $nilai / $hitung ?></td>
 											<td><?= kategori($rata) ?></td>
 										</tr>
@@ -147,33 +195,32 @@
 		// }).appendTo("body").get(0).click();
 		// e.preventDefault();
 
-		var tab_text="<table border='2px'><tr>";
-		var textRange; var j=0;
+		var tab_text = "<table border='2px'><tr>";
+		var textRange;
+		var j = 0;
 		tab = document.getElementById('excel'); // id of table
 
-		for(j = 0 ; j < tab.rows.length ; j++)
-		{
-			tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+		for (j = 0; j < tab.rows.length; j++) {
+			tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
 			//tab_text=tab_text+"</tr>";
 		}
 
-		tab_text=tab_text+"</table>";
-		tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
-		tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
-		tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+		tab_text = tab_text + "</table>";
+		tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+		tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+		tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
 
 		var ua = window.navigator.userAgent;
 		var msie = ua.indexOf("MSIE ");
 
 		if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
 		{
-			txtArea1.document.open("txt/html","replace");
+			txtArea1.document.open("txt/html", "replace");
 			txtArea1.document.write(tab_text);
 			txtArea1.document.close();
 			txtArea1.focus();
-			sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xlsx");
-		}
-		else                 //other browser not tested on IE 11
+			sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xlsx");
+		} else                 //other browser not tested on IE 11
 			sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
 
 		return (sa);

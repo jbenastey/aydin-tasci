@@ -23,6 +23,7 @@ class LaporanController extends CI_Controller
 			'faktor' => $this->faktor->lihat_semua(),
 			'subfaktor' => $this->subfaktor->lihat_semua(),
 			'kuesioner' => $this->kuesioner->lihat_semua(),
+			'pertanyaan' => $this->pertanyaan->lihat_semua(),
 			'detail' => $this->kuesioner->lihat_semua_detail(),
 		);
 		$this->load->view('templates/header');
