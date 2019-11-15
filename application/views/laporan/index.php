@@ -141,7 +141,7 @@
 												endif;
 											endforeach;
 											$jumlahSemuanya+=($rataRata/$nomor);
-											echo $rataRata/$nomor;
+											echo round($rataRata/$nomor,2);
 										endif;
 										?>
 									</td>
@@ -169,7 +169,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo $jumlahSemuanya / ($no - 1);
+									echo round($jumlahSemuanya / ($no - 1),2);
 									?></th>
 								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
@@ -305,7 +305,7 @@
 												endif;
 											endforeach;
 											$jumlahSemuanya+=($rataRata/$nomor);
-											echo $rataRata/$nomor;
+											echo round($rataRata/$nomor,2);
 										endif;
 										?>
 									</td>
@@ -333,7 +333,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo $jumlahSemuanya / ($no - 1);
+									echo round($jumlahSemuanya / ($no - 1),2);
 									?></th>
 								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>

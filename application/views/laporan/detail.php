@@ -139,23 +139,23 @@
 												endif;
 											endforeach;
 											?>
-											<td><?= $fstTotal / $fst ?></td>
-											<td><?= $fshTotal / $fsh ?></td>
-											<td><?= $ftkTotal / $ftk ?></td>
-											<td><?= $fudTotal / $fud ?></td>
-											<td><?= $fdkTotal / $fdk ?></td>
-											<td><?= $fppTotal / $fpp ?></td>
-											<td><?= $fesTotal / $fes ?></td>
-											<td><?= $fpsTotal / $fps ?></td>
-											<td><?= $nilai = ($fstTotal / $fst) +
+											<td><?= round($fstTotal / $fst,2) ?></td>
+											<td><?= round($fshTotal / $fsh,2) ?></td>
+											<td><?= round($ftkTotal / $ftk,2) ?></td>
+											<td><?= round($fudTotal / $fud,2) ?></td>
+											<td><?= round($fdkTotal / $fdk,2) ?></td>
+											<td><?= round($fppTotal / $fpp,2) ?></td>
+											<td><?= round($fesTotal / $fes,2) ?></td>
+											<td><?= round($fpsTotal / $fps,2) ?></td>
+											<td><?= round($nilai = ($fstTotal / $fst) +
 													($fshTotal / $fsh) +
 													($ftkTotal / $ftk) +
 													($fudTotal / $fud) +
 													($fdkTotal / $fdk) +
 													($fppTotal / $fpp) +
 													($fesTotal / $fes) +
-													($fpsTotal / $fps) ?></td>
-											<td><?= $rata = $nilai / $hitung ?></td>
+													($fpsTotal / $fps),2) ?></td>
+											<td><?= round($rata = $nilai / $hitung,2) ?></td>
 											<td><?= kategori($rata) ?></td>
 										</tr>
 										<?php
@@ -169,8 +169,8 @@
 								<tfoot>
 								<tr>
 									<th colspan="10">Total</th>
-									<th><?= $jumlahSemua ?></th>
-									<th><?= $rataRata / ($no - 1) ?></th>
+									<th><?= round($jumlahSemua,2) ?></th>
+									<th><?= round($rataRata / ($no - 1),2) ?></th>
 									<th><?= kategori($rataRata / ($no - 1)) ?></th>
 								</tr>
 								</tfoot>
