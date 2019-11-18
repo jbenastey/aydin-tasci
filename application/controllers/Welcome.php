@@ -45,4 +45,11 @@ class Welcome extends CI_Controller {
 		);
 		echo json_encode($data);
 	}
+	public function grafik_semua(){
+		$data = array(
+			'grafik' => $this->kuesioner->lihat_semua_detail(),
+			'faktor' => $this->faktor->lihat_semua()
+		);
+		echo json_encode($data);
+	}
 }

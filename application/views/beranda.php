@@ -23,6 +23,14 @@
 						<div class="chart">
 							<canvas id="mahasiswa-chart" width="1000" height="280"></canvas>
 						</div>
+						<hr>
+						<div class="chart">
+							<canvas id="ptipd-chart" width="1000" height="280"></canvas>
+						</div>
+						<hr>
+						<div class="chart">
+							<canvas id="semua-chart" width="1000" height="280"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>

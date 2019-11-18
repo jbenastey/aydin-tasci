@@ -368,6 +368,152 @@ $(document).ready(function () {
 			console.log(response.status + 'error');
 		}
 	});
+	var $salesChart3 = $('#ptipd-chart');
+	$.ajax({
+		url: root + 'grafik/ptipd',
+		type: 'GET',
+		async: true,
+		cache: false,
+		dataType: 'json',
+		success: function (response) {
+			console.log(response);
+			var faktor = [];
+			var jumlahnya = [];
+			var jumlahfst = [];
+			for (var i = 0; i < response.faktor.length; i++) {
+				faktor.push(response.faktor[i].faktor_nama);
+			}
+			for (var k = 0; k < faktor.length; k++) {
+				var totalfst = 0;
+				var hitungfst = 0;
+				for (var j = 0; j < response.grafik.length; j++) {
+					if (response.grafik[j].faktor_nama === faktor[k]) {
+						if (response.grafik[j].kuesioner_fakultas === 'ptipd'){
+							totalfst = totalfst + parseInt(response.grafik[j].detail_jawaban);
+							hitungfst++;
+						}
+					}
+				}
+				var ratafst = totalfst/hitungfst;
+				jumlahfst.push(getNum(ratafst).toFixed(2));
+			}
+			var salesChart = new Chart($salesChart3, {
+				type: 'bar',
+				data: {
+					labels: faktor,
+					datasets: [
+						{
+							label: 'Nilai',
+							backgroundColor: '#007bff',
+							borderColor: '#007bff',
+							data: jumlahfst
+						}
+					]
+				},
+				options: {
+					maintainAspectRatio: false,
+					tooltips: {
+						mode: mode,
+						intersect: intersect
+					},
+					hover: {
+						mode: mode,
+						intersect: intersect
+					},
+					legend: {
+						display: true,
+						position: 'bottom',
+					},
+					scales: {
+						yAxes:[{
+							ticks: {
+								beginAtZero : true
+							}
+						}]
+					},
+					title: {
+						display: true,
+						text: 'Responden PTIPD'
+					},
+				}
+			});
+		},
+		error: function (response) {
+			console.log(response.status + 'error');
+		}
+	});
+	var $salesChart4 = $('#semua-chart');
+	$.ajax({
+		url: root + 'grafik_semua',
+		type: 'GET',
+		async: true,
+		cache: false,
+		dataType: 'json',
+		success: function (response) {
+			console.log(response);
+			var faktor = [];
+			var jumlahnya = [];
+			var jumlahfst = [];
+			for (var i = 0; i < response.faktor.length; i++) {
+				faktor.push(response.faktor[i].faktor_nama);
+			}
+			for (var k = 0; k < faktor.length; k++) {
+				var totalfst = 0;
+				var hitungfst = 0;
+				for (var j = 0; j < response.grafik.length; j++) {
+					if (response.grafik[j].faktor_nama === faktor[k]) {
+							totalfst = totalfst + parseInt(response.grafik[j].detail_jawaban);
+							hitungfst++;
+					}
+				}
+				var ratafst = totalfst/hitungfst;
+				jumlahfst.push(getNum(ratafst).toFixed(2));
+			}
+			var salesChart = new Chart($salesChart4, {
+				type: 'bar',
+				data: {
+					labels: faktor,
+					datasets: [
+						{
+							label: 'Nilai',
+							backgroundColor: '#14ff00',
+							borderColor: '#14ff00',
+							data: jumlahfst
+						}
+					]
+				},
+				options: {
+					maintainAspectRatio: false,
+					tooltips: {
+						mode: mode,
+						intersect: intersect
+					},
+					hover: {
+						mode: mode,
+						intersect: intersect
+					},
+					legend: {
+						display: true,
+						position: 'bottom',
+					},
+					scales: {
+						yAxes:[{
+							ticks: {
+								beginAtZero : true
+							}
+						}]
+					},
+					title: {
+						display: true,
+						text: 'Seluruh Responden'
+					},
+				}
+			});
+		},
+		error: function (response) {
+			console.log(response.status + 'error');
+		}
+	});
 
 	function getNum(val) {
 		if (isNaN(val)) {
