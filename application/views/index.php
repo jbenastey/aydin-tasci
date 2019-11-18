@@ -45,6 +45,7 @@
 			<!-- /.login-card-body -->
 		</div>
 	</div>
+	<a href="<?= base_url('kuesioner/tambah/ptipd') ?>">Kuesioner PTIPD</a>
 	<a href="<?= base_url('login') ?>" class="float-right">Login admin</a>
 	<!-- /.login-box -->
 

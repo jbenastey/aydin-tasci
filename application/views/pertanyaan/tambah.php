@@ -45,6 +45,7 @@
 									<select name="responden" class="form-control" required >
 										<option>dosen</option>
 										<option>mahasiswa</option>
+										<option>ptipd</option>
 									</select>
 								</div>
 								<div class="form-group">

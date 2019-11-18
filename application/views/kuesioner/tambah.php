@@ -80,6 +80,21 @@
 									</select>
 								</div>
 							<?php
+							elseif ($this->uri->segment(3) == 'ptipd'):
+								?>
+								<div class="form-group">
+									<label>Nama </label>
+									<input type="text" class="form-control" name="nama" placeholder="nama" required
+										   autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label>NIP/NIK </label>
+									<input type="number" class="form-control" name="nik" placeholder="nip/nik" required
+										   autocomplete="off">
+								</div>
+								<input type="hidden" name="jabatan" value="PTIPD">
+								<input type="hidden" name="fakultas" value="ptipd">
+							<?php
 							endif
 							?>
 					</div>
