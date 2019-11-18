@@ -35,6 +35,9 @@
 						<h3 id="laporan">Laporan <?= ucfirst($responden) ?> Faktor <?= $faktor ?></h3>
 						<div class="excel">
 							<table class="table table-bordered" id="excel">
+								<?php
+								if($responden != 'ptipd'):
+								?>
 								<thead class="text-center">
 								<tr>
 									<th rowspan="2">Nomor</th>
@@ -174,6 +177,66 @@
 									<th><?= kategori($rataRata / ($no - 1)) ?></th>
 								</tr>
 								</tfoot>
+								<?php
+								else:
+								?>
+									<thead class="text-center">
+									<tr>
+										<th rowspan="2">Nomor</th>
+										<th rowspan="2">Pertanyaan</th>
+										<th rowspan="2">Nilai</th>
+										<th rowspan="2">Keterangan</th>
+									</tr>
+									</thead>
+									<tbody>
+									<?php
+									$no = 1;
+									$jumlahSemua = 0;
+									$rataRata = 0;
+									foreach ($pertanyaan as $key => $value):
+										if ($value['pertanyaan_jenis'] == $responden):
+											?>
+											<tr>
+												<td><?= $no ?></td>
+												<td><?= $value['pertanyaan_isi'] ?></td>
+												<?php
+												$nilai = 0;
+												$hitung = 0;
+												$fst = 0;
+												$fstTotal = 0;
+												foreach ($jawaban as $key2 => $value2):
+													if ($value['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
+														if ($value2['kuesioner_fakultas'] == 'ptipd') {
+															$fstTotal += $value2['detail_jawaban'];
+															$fst++;
+															if($fst == 1){
+																$hitung++;
+															}
+														}
+													endif;
+												endforeach;
+												?>
+												<td><?= round($rata = ($fstTotal / $fst) / $hitung,2) ?></td>
+												<td><?= kategori($rata) ?></td>
+											</tr>
+											<?php
+											$no++;
+											$jumlahSemua += $nilai;
+											$rataRata += $rata;
+										endif;
+									endforeach;
+									?>
+									</tbody>
+									<tfoot>
+									<tr>
+										<th colspan="2">Total</th>
+										<th><?= round($rataRata / ($no - 1),2) ?></th>
+										<th><?= kategori($rataRata / ($no - 1)) ?></th>
+									</tr>
+									</tfoot>
+								<?php
+								endif
+								?>
 							</table>
 						</div>
 					</div>
