@@ -442,6 +442,86 @@
 						</table>
 					</div>
 				</div>
+				<div class="card card-primary card-outline">
+					<div class="card-header">
+						Data Laporan Semua Responden
+					</div>
+					<div class="card-body">
+						<table class="table table-bordered ">
+							<thead>
+							<tr>
+								<th>No</th>
+								<th>Faktor</th>
+								<th>Rentang Nilai</th>
+								<th>Keterangan</th>
+								<th>Aksi</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+//							echo "<pre>";
+//							print_r ($detail);
+//							echo "</pre>";die;
+							$no = 1;
+							$jumlahSemuanya = 0;
+							foreach ($faktor as $key => $value):
+								?>
+								<tr>
+									<td><?= $no ?></td>
+									<td><?= $value['faktor_nama'] ?></td>
+									<td>
+										<?php
+										$nilai = null;
+										if ($detail == null):
+											?>
+											Kuesioner belum diisi
+										<?php
+										else:
+											$hitungsemua = 0;
+											foreach ($detail as $key2=>$value2){
+												if ($value2['faktor_nama'] == $value['faktor_nama']){
+													$nilai += $value2['detail_jawaban'];
+													$hitungsemua++;
+												}
+											}
+											$rataSemua = $nilai/$hitungsemua;
+											$jumlahSemuanya+= $rataSemua;
+											echo round($rataSemua,2);
+										endif;
+										?>
+									</td>
+									<td>
+										<?php
+										if ($rataRata/$nomor != null):
+											echo kategori($rataRata/$nomor);
+										else: ?>
+											Kuesioner belum diisi
+										<?php
+										endif;
+										?>
+									</td>
+									<td><a href="<?= base_url('laporan/detail/ptipd/' . $value['faktor_nama']) ?>"
+										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
+												class="fa fa-eye"></i>
+										</a></td>
+								</tr>
+								<?php
+								$no++;
+							endforeach;
+							?>
+							</tbody>
+							<tfoot>
+							<tr>
+								<th colspan="2">Rata-rata</th>
+								<th><?php
+									echo round($jumlahSemuanya / ($no - 1),2);
+									?></th>
+								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+							</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
