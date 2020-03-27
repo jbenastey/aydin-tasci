@@ -1,5 +1,9 @@
 <?php
 
+require FCPATH . 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class KuesionerController extends CI_Controller
 {
@@ -85,5 +89,14 @@ class KuesionerController extends CI_Controller
 		$this->load->view('templates/header');
 		$this->load->view('kuesioner/lihat', $data);
 		$this->load->view('templates/footer');
+	}
+
+	public function excel(){
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'Hello World !');
+
+		$writer = new Xlsx($spreadsheet);
+		$writer->save('hello world.xlsx');
 	}
 }
