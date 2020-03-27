@@ -25,6 +25,7 @@
 							<thead>
 							<tr>
 								<th>No</th>
+								<th>Kode</th>
 								<th>Faktor</th>
 								<th>Subfaktor</th>
 								<th>Pertanyaan</th>
@@ -39,6 +40,7 @@
 								?>
 								<tr>
 									<td><?= $no ?></td>
+									<td><?= $value['pertanyaan_kode'] ?></td>
 									<td><?= $value['faktor_nama'] ?></td>
 									<td><?= $value['subfaktor_nama'] ?></td>
 									<td><?= $value['pertanyaan_isi'] ?></td>

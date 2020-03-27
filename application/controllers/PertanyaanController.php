@@ -61,6 +61,7 @@ class PertanyaanController extends CI_Controller
 	{
 		if (isset($_POST['simpan'])) {
 			$data = array(
+				'pertanyaan_kode' => $this->input->post('kode'),
 				'pertanyaan_isi' => $this->input->post('pertanyaan'),
 				'pertanyaan_faktor_id' => $this->input->post('faktor'),
 				'pertanyaan_subfaktor_id' => $this->input->post('subfaktor'),

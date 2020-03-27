@@ -22,6 +22,10 @@
 						<form method="post" action="<?=base_url('pertanyaan/edit/'.$pertanyaan['pertanyaan_id'])?>">
 							<div class="card-body">
 								<div class="form-group">
+									<div class="form-group">
+										<label for="">Kode</label>
+										<input type="text" name="kode" class="form-control" id="" value="<?= $pertanyaan['pertanyaan_kode']?>" required>
+									</div>
 									<label>Faktor</label>
 									<select name="faktor" class="form-control" required id="faktor">
 										<option selected disabled>- Pilih Faktor -</option>
