@@ -114,5 +114,14 @@ if($this->session->userdata('session_id') == null){echo 'style="display:none;"';
 		)
 	</script>
 <?php } ?>
+<?php if ($this->session->flashdata('alert') == 'import') { ?>
+	<script>
+		Swal.fire(
+			'Data telah diimport',
+			'',
+			'success'
+		)
+	</script>
+<?php } ?>
 </body>
 </html>

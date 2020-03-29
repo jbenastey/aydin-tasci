@@ -12,3 +12,25 @@ function kategori($nilai){
 	endif;
 	return $hasil;
 }
+
+function jurusan($jurusan){
+	$hasil = null;
+	if ($jurusan == 'Syariah dan Ilmu Hukum'){
+		$hasil = 'fasih';
+	} elseif ($jurusan == 'Sains dan Teknologi'){
+		$hasil = 'fst';
+	} elseif ($jurusan == 'Tarbiyah dan Keguruan'){
+		$hasil = 'ftk';
+	} elseif ($jurusan == 'Psikologi'){
+		$hasil = 'fpsi';
+	} elseif ($jurusan == 'Ekonomi dan Sosial'){
+		$hasil = 'fekonsos';
+	} elseif ($jurusan == 'Dakwah dan Komunikasi'){
+		$hasil = 'fdk';
+	} elseif ($jurusan == 'Pertanian dan Peternakan'){
+		$hasil = 'fapertapet';
+	} elseif ($jurusan == 'Ushuluddin'){
+		$hasil = 'fud';
+	}
+	return $hasil;
+}

@@ -87,7 +87,7 @@ $route['beranda'] = 'welcome/beranda';
 $route['grafik/(:any)'] = 'welcome/grafik/$1';
 $route['grafik_semua'] = 'welcome/grafik_semua';
 
-$route['excel'] = 'KuesionerController/excel';
+$route['import'] = 'KuesionerController/import';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
