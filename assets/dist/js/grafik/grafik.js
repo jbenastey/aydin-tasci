@@ -10,6 +10,9 @@ $(document).ready(function () {
 	var mode = 'index';
 	var intersect = true;
 
+	var rentangNilaiDosen = [];
+	var rentangNilaiMhs = [];
+
 	var $salesChart = $('#dosen-chart');
 	$.ajax({
 		url: root + 'grafik/dosen',
@@ -32,6 +35,8 @@ $(document).ready(function () {
 				faktor.push(response.faktor[i].faktor_nama);
 			}
 			for (var k = 0; k < faktor.length; k++) {
+
+				var hitung = 0;
 				var totalfst = 0;
 				var hitungfst = 0;
 				var totalftk = 0;
@@ -53,34 +58,58 @@ $(document).ready(function () {
 						if (response.grafik[j].kuesioner_fakultas === 'fst'){
 							totalfst = totalfst + parseInt(response.grafik[j].detail_jawaban);
 							hitungfst++;
+							if (hitungfst === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'ftk'){
 							totalftk = totalftk + parseInt(response.grafik[j].detail_jawaban);
 							hitungftk++;
+							if (hitungftk === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fud'){
 							totalfud = totalfud + parseInt(response.grafik[j].detail_jawaban);
 							hitungfud++;
+							if (hitungfud === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fpsi'){
 							totalfps = totalfps + parseInt(response.grafik[j].detail_jawaban);
 							hitungfps++;
+							if (hitungfps === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fekonsos'){
 							totalfes = totalfes + parseInt(response.grafik[j].detail_jawaban);
 							hitungfes++;
+							if (hitungfes === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fasih'){
 							totalfsh = totalfsh + parseInt(response.grafik[j].detail_jawaban);
 							hitungfsh++;
+							if (hitungfsh === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fdk'){
 							totalfdk = totalfdk + parseInt(response.grafik[j].detail_jawaban);
 							hitungfdk++;
+							if (hitungfdk === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fapertapet'){
 							totalfpp = totalfpp + parseInt(response.grafik[j].detail_jawaban);
 							hitungfpp++;
+							if (hitungfpp === 1) {
+								hitung++;
+							}
 						}
 					}
 				}
@@ -100,6 +129,9 @@ $(document).ready(function () {
 				jumlahfdk.push(getNum(ratafdk).toFixed(2));
 				var ratafpp = totalfpp/hitungfpp;
 				jumlahfpp.push(getNum(ratafpp).toFixed(2));
+				var nilai = nan(ratafdk) + nan(ratafes) + nan(ratafpp) + nan(ratafps) + nan(ratafsh) + nan(ratafst) + nan(rataftk) + nan(ratafud);
+				var rata = nilai / hitung;
+				rentangNilaiDosen.push(rata)
 			}
 			var salesChart = new Chart($salesChart, {
 				type: 'bar',
@@ -210,6 +242,7 @@ $(document).ready(function () {
 				faktor.push(response.faktor[i].faktor_nama);
 			}
 			for (var k = 0; k < faktor.length; k++) {
+				var hitung = 0;
 				var totalfst = 0;
 				var hitungfst = 0;
 				var totalftk = 0;
@@ -231,34 +264,58 @@ $(document).ready(function () {
 						if (response.grafik[j].kuesioner_fakultas === 'fst'){
 							totalfst = totalfst + parseInt(response.grafik[j].detail_jawaban);
 							hitungfst++;
+							if (hitungfst === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'ftk'){
 							totalftk = totalftk + parseInt(response.grafik[j].detail_jawaban);
 							hitungftk++;
+							if (hitungftk === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fud'){
 							totalfud = totalfud + parseInt(response.grafik[j].detail_jawaban);
 							hitungfud++;
+							if (hitungfud === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fpsi'){
 							totalfps = totalfps + parseInt(response.grafik[j].detail_jawaban);
 							hitungfps++;
+							if (hitungfps === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fekonsos'){
 							totalfes = totalfes + parseInt(response.grafik[j].detail_jawaban);
 							hitungfes++;
+							if (hitungfes === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fasih'){
 							totalfsh = totalfsh + parseInt(response.grafik[j].detail_jawaban);
 							hitungfsh++;
+							if (hitungfsh === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fdk'){
 							totalfdk = totalfdk + parseInt(response.grafik[j].detail_jawaban);
 							hitungfdk++;
+							if (hitungfdk === 1) {
+								hitung++;
+							}
 						}
 						else if (response.grafik[j].kuesioner_fakultas === 'fapertapet'){
 							totalfpp = totalfpp + parseInt(response.grafik[j].detail_jawaban);
 							hitungfpp++;
+							if (hitungfpp === 1) {
+								hitung++;
+							}
 						}
 					}
 				}
@@ -278,6 +335,9 @@ $(document).ready(function () {
 				jumlahfdk.push(getNum(ratafdk).toFixed(2));
 				var ratafpp = totalfpp/hitungfpp;
 				jumlahfpp.push(getNum(ratafpp).toFixed(2));
+				var nilai = nan(ratafdk) + nan(ratafes) + nan(ratafpp) + nan(ratafps) + nan(ratafsh) + nan(ratafst) + nan(rataftk) + nan(ratafud);
+				var rata = nilai / hitung;
+				rentangNilaiMhs.push(rata)
 			}
 			var salesChart = new Chart($salesChart2, {
 				type: 'bar',
@@ -454,24 +514,8 @@ $(document).ready(function () {
 				faktor.push(response.faktor[i].faktor_nama);
 			}
 			for (var k = 0; k < faktor.length; k++) {
-				var totaldosen = 0;
-				var hitungdosen = 0;
-				var totalmhs = 0;
-				var hitungmhs = 0;
-				for (var j = 0; j < response.grafik.length; j++) {
-					if (response.grafik[j].faktor_nama === faktor[k]) {
-						console.log();
-						if (response.grafik[j].kuesioner_jabatan === 'Dosen Pengajar'){
-							totaldosen = totaldosen + parseInt(response.grafik[j].detail_jawaban);
-							hitungdosen++;
-						} else {
-							totalmhs = totalmhs + parseInt(response.grafik[j].detail_jawaban);
-							hitungmhs++;
-						}
-					}
-				}
-				var ratadosen = totaldosen/hitungdosen;
-				var ratamhs = totalmhs/hitungmhs;
+				var ratadosen = rentangNilaiDosen[k];
+				var ratamhs = rentangNilaiMhs[k];
 				var rata = (ratadosen + ratamhs) / 2;
 				jumlahfst.push(getNum(rata).toFixed(2));
 			}
@@ -526,5 +570,13 @@ $(document).ready(function () {
 			return 0;
 		}
 		return val;
+	}
+
+	function nan(angka) {
+		if (isNaN(angka)){
+			return 0;
+		}else {
+			return angka;
+		}
 	}
 })
