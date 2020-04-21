@@ -33,6 +33,7 @@ class LaporanController extends CI_Controller
 
 	public function detail($responden,$faktor)
 	{
+		$faktor = str_replace('-',' ',$faktor);
 		$data = array(
 			'faktor' => $faktor,
 			'pertanyaan' => $this->pertanyaan->lihat_faktor($faktor),

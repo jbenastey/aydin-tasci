@@ -142,22 +142,22 @@
 												endif;
 											endforeach;
 											?>
-											<td><?= round($fstTotal / $fst,2) ?></td>
-											<td><?= round($fshTotal / $fsh,2) ?></td>
-											<td><?= round($ftkTotal / $ftk,2) ?></td>
-											<td><?= round($fudTotal / $fud,2) ?></td>
-											<td><?= round($fdkTotal / $fdk,2) ?></td>
-											<td><?= round($fppTotal / $fpp,2) ?></td>
-											<td><?= round($fesTotal / $fes,2) ?></td>
-											<td><?= round($fpsTotal / $fps,2) ?></td>
-											<td><?= round($nilai = ($fstTotal / $fst) +
-													($fshTotal / $fsh) +
-													($ftkTotal / $ftk) +
-													($fudTotal / $fud) +
-													($fdkTotal / $fdk) +
-													($fppTotal / $fpp) +
-													($fesTotal / $fes) +
-													($fpsTotal / $fps),2) ?></td>
+											<td><?= isNan(round($fstTotal / $fst,2)) ?></td>
+											<td><?= isNan(round($fshTotal / $fsh,2)) ?></td>
+											<td><?= isNan(round($ftkTotal / $ftk,2)) ?></td>
+											<td><?= isNan(round($fudTotal / $fud,2)) ?></td>
+											<td><?= isNan(round($fdkTotal / $fdk,2)) ?></td>
+											<td><?= isNan(round($fppTotal / $fpp,2)) ?></td>
+											<td><?= isNan(round($fesTotal / $fes,2)) ?></td>
+											<td><?= isNan(round($fpsTotal / $fps,2)) ?></td>
+											<td><?= round($nilai = isNan(($fstTotal / $fst)) +
+													isNan(($fshTotal / $fsh)) +
+													isNan(($ftkTotal / $ftk)) +
+													isNan(($fudTotal / $fud)) +
+													isNan(($fdkTotal / $fdk)) +
+													isNan(($fppTotal / $fpp)) +
+													isNan(($fesTotal / $fes)) +
+													isNan(($fpsTotal / $fps)),2) ?></td>
 											<td><?= round($rata = $nilai / $hitung,2) ?></td>
 											<td><?= kategori($rata) ?></td>
 										</tr>

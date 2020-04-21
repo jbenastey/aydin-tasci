@@ -39,7 +39,7 @@
 									<td><?= $value['faktor_nama'] ?></td>
 									<td>
 										<?php
-										$nilai = null;
+										$nilai = 0;
 										if ($detail == null):
 											?>
 											Kuesioner belum diisi
@@ -124,14 +124,14 @@
 															endif;
 														endforeach;
 														?>
-														<?php $nilai = ($fstTotal / $fst) +
-														($fshTotal / $fsh) +
-														($ftkTotal / $ftk) +
-														($fudTotal / $fud) +
-														($fdkTotal / $fdk) +
-														($fppTotal / $fpp) +
-														($fesTotal / $fes) +
-														($fpsTotal / $fps) ?>
+														<?php $nilai = isNan(($fstTotal / $fst)) +
+														isNan(($fshTotal / $fsh)) +
+														isNan(($ftkTotal / $ftk)) +
+														isNan(($fudTotal / $fud)) +
+														isNan(($fdkTotal / $fdk)) +
+														isNan(($fppTotal / $fpp)) +
+														isNan(($fesTotal / $fes)) +
+														isNan(($fpsTotal / $fps)) ?>
 
 														<?php $rata = $nilai / $hitung ?>
 														<?php
@@ -155,7 +155,11 @@
 										endif;
 										?>
 									</td>
-									<td><a href="<?= base_url('laporan/detail/dosen/' . $value['faktor_nama']) ?>"
+									<td>
+										<?php
+										$faktorNama = str_replace(' ','-',$value['faktor_nama']);
+										?>
+										<a href="<?= base_url('laporan/detail/dosen/' . $faktorNama) ?>"
 										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
 												class="fa fa-eye"></i>
 										</a></td>
@@ -288,14 +292,14 @@
 															endif;
 														endforeach;
 														?>
-														<?php $nilai = ($fstTotal / $fst) +
-														($fshTotal / $fsh) +
-														($ftkTotal / $ftk) +
-														($fudTotal / $fud) +
-														($fdkTotal / $fdk) +
-														($fppTotal / $fpp) +
-														($fesTotal / $fes) +
-														($fpsTotal / $fps) ?>
+														<?php $nilai = isNan(($fstTotal / $fst)) +
+														isNan(($fshTotal / $fsh)) +
+														isNan(($ftkTotal / $ftk)) +
+														isNan(($fudTotal / $fud)) +
+														isNan(($fdkTotal / $fdk)) +
+														isNan(($fppTotal / $fpp)) +
+														isNan(($fesTotal / $fes)) +
+														isNan(($fpsTotal / $fps)) ?>
 
 														<?php $rata = $nilai / $hitung ?>
 														<?php
@@ -319,7 +323,10 @@
 										endif;
 										?>
 									</td>
-									<td><a href="<?= base_url('laporan/detail/mahasiswa/' . $value['faktor_nama']) ?>"
+									<td>
+										<?php
+										$faktorNama = str_replace(' ','-',$value['faktor_nama']); ?>
+										<a href="<?= base_url('laporan/detail/mahasiswa/' . $faktorNama) ?>"
 										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
 												class="fa fa-eye"></i>
 										</a></td>
@@ -396,9 +403,9 @@
 															endif;
 														endforeach;
 														?>
-														<?php $nilai = ($fstTotal / $fst)  ?>
+														<?php $nilai = isNan($fstTotal / $fst)  ?>
 
-														<?php $rata = $nilai / $hitung ?>
+														<?php $rata = isNan($nilai / $hitung) ?>
 														<?php
 														$jumlahSemua += $nilai;
 														$rataRata += $rata;
@@ -406,7 +413,7 @@
 												endif;
 											endforeach;
 											$jumlahSemuanya+=($rataRata/$nomor);
-											echo round($rataRata/$nomor,2);
+											echo isNan(round($rataRata/$nomor,2));
 										endif;
 										?>
 									</td>
@@ -434,7 +441,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo round($jumlahSemuanya / ($no - 1),2);
+									echo isNan(round($jumlahSemuanya / ($no - 1),2));
 									?></th>
 								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
@@ -454,7 +461,6 @@
 								<th>Faktor</th>
 								<th>Rentang Nilai</th>
 								<th>Keterangan</th>
-								<th>Aksi</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -492,18 +498,14 @@
 									</td>
 									<td>
 										<?php
-										if ($rataRata/$nomor != null):
-											echo kategori($rataRata/$nomor);
+										if ($rataSemua/$nomor != null):
+											echo kategori($rataSemua);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
 										endif;
 										?>
 									</td>
-									<td><a href="<?= base_url('laporan/detail/ptipd/' . $value['faktor_nama']) ?>"
-										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
-												class="fa fa-eye"></i>
-										</a></td>
 								</tr>
 								<?php
 								$no++;
@@ -516,7 +518,7 @@
 								<th><?php
 									echo round($jumlahSemuanya / ($no - 1),2);
 									?></th>
-								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+								<th colspan="1"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
 							</tfoot>
 						</table>

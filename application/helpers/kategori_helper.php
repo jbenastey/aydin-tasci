@@ -34,3 +34,11 @@ function jurusan($jurusan){
 	}
 	return $hasil;
 }
+
+function isNan($angka){
+	if (is_nan($angka)){
+		return 0;
+	}else {
+		return $angka;
+	}
+}
