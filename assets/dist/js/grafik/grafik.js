@@ -18,7 +18,6 @@ $(document).ready(function () {
 		cache: false,
 		dataType: 'json',
 		success: function (response) {
-			console.log(response);
 			var faktor = [];
 			var jumlahnya = [];
 			var jumlahfst = [];
@@ -197,7 +196,6 @@ $(document).ready(function () {
 		cache: false,
 		dataType: 'json',
 		success: function (response) {
-			console.log(response);
 			var faktor = [];
 			var jumlahnya = [];
 			var jumlahfst = [];
@@ -376,7 +374,6 @@ $(document).ready(function () {
 		cache: false,
 		dataType: 'json',
 		success: function (response) {
-			console.log(response);
 			var faktor = [];
 			var jumlahnya = [];
 			var jumlahfst = [];
@@ -450,7 +447,6 @@ $(document).ready(function () {
 		cache: false,
 		dataType: 'json',
 		success: function (response) {
-			console.log(response);
 			var faktor = [];
 			var jumlahnya = [];
 			var jumlahfst = [];
@@ -458,16 +454,26 @@ $(document).ready(function () {
 				faktor.push(response.faktor[i].faktor_nama);
 			}
 			for (var k = 0; k < faktor.length; k++) {
-				var totalfst = 0;
-				var hitungfst = 0;
+				var totaldosen = 0;
+				var hitungdosen = 0;
+				var totalmhs = 0;
+				var hitungmhs = 0;
 				for (var j = 0; j < response.grafik.length; j++) {
 					if (response.grafik[j].faktor_nama === faktor[k]) {
-							totalfst = totalfst + parseInt(response.grafik[j].detail_jawaban);
-							hitungfst++;
+						console.log();
+						if (response.grafik[j].kuesioner_jabatan === 'Dosen Pengajar'){
+							totaldosen = totaldosen + parseInt(response.grafik[j].detail_jawaban);
+							hitungdosen++;
+						} else {
+							totalmhs = totalmhs + parseInt(response.grafik[j].detail_jawaban);
+							hitungmhs++;
+						}
 					}
 				}
-				var ratafst = totalfst/hitungfst;
-				jumlahfst.push(getNum(ratafst).toFixed(2));
+				var ratadosen = totaldosen/hitungdosen;
+				var ratamhs = totalmhs/hitungmhs;
+				var rata = (ratadosen + ratamhs) / 2;
+				jumlahfst.push(getNum(rata).toFixed(2));
 			}
 			var salesChart = new Chart($salesChart4, {
 				type: 'bar',

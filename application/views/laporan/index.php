@@ -140,15 +140,15 @@
 													endif;
 												endif;
 											endforeach;
-											$jumlahSemuanya+=($rataRata/$nomor);
-											echo round($rataRata/$nomor,2);
+											$jumlahSemuanya += ($rataRata / $nomor);
+											echo round($rataRata / $nomor, 2);
 										endif;
 										?>
 									</td>
 									<td>
 										<?php
-										if ($rataRata/$nomor != null):
-											echo kategori($rataRata/$nomor);
+										if ($rataRata / $nomor != null):
+											echo kategori($rataRata / $nomor);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
@@ -157,7 +157,7 @@
 									</td>
 									<td>
 										<?php
-										$faktorNama = str_replace(' ','-',$value['faktor_nama']);
+										$faktorNama = str_replace(' ', '-', $value['faktor_nama']);
 										?>
 										<a href="<?= base_url('laporan/detail/dosen/' . $faktorNama) ?>"
 										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
@@ -173,7 +173,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo round($jumlahSemuanya / ($no - 1),2);
+									echo round($jumlahSemuanya / ($no - 1), 2);
 									?></th>
 								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
@@ -308,15 +308,15 @@
 													endif;
 												endif;
 											endforeach;
-											$jumlahSemuanya+=($rataRata/$nomor);
-											echo round($rataRata/$nomor,2);
+											$jumlahSemuanya += ($rataRata / $nomor);
+											echo round($rataRata / $nomor, 2);
 										endif;
 										?>
 									</td>
 									<td>
 										<?php
-										if ($rataRata/$nomor != null):
-											echo kategori($rataRata/$nomor);
+										if ($rataRata / $nomor != null):
+											echo kategori($rataRata / $nomor);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
@@ -325,7 +325,7 @@
 									</td>
 									<td>
 										<?php
-										$faktorNama = str_replace(' ','-',$value['faktor_nama']); ?>
+										$faktorNama = str_replace(' ', '-', $value['faktor_nama']); ?>
 										<a href="<?= base_url('laporan/detail/mahasiswa/' . $faktorNama) ?>"
 										   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
 												class="fa fa-eye"></i>
@@ -340,7 +340,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo round($jumlahSemuanya / ($no - 1),2);
+									echo round($jumlahSemuanya / ($no - 1), 2);
 									?></th>
 								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
@@ -403,7 +403,7 @@
 															endif;
 														endforeach;
 														?>
-														<?php $nilai = isNan($fstTotal / $fst)  ?>
+														<?php $nilai = isNan($fstTotal / $fst) ?>
 
 														<?php $rata = isNan($nilai / $hitung) ?>
 														<?php
@@ -412,15 +412,15 @@
 													endif;
 												endif;
 											endforeach;
-											$jumlahSemuanya+=($rataRata/$nomor);
-											echo isNan(round($rataRata/$nomor,2));
+											$jumlahSemuanya += ($rataRata / $nomor);
+											echo isNan(round($rataRata / $nomor, 2));
 										endif;
 										?>
 									</td>
 									<td>
 										<?php
-										if ($rataRata/$nomor != null):
-											echo kategori($rataRata/$nomor);
+										if ($rataRata / $nomor != null):
+											echo kategori($rataRata / $nomor);
 										else: ?>
 											Kuesioner belum diisi
 										<?php
@@ -441,7 +441,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo isNan(round($jumlahSemuanya / ($no - 1),2));
+									echo isNan(round($jumlahSemuanya / ($no - 1), 2));
 									?></th>
 								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
@@ -465,9 +465,9 @@
 							</thead>
 							<tbody>
 							<?php
-//							echo "<pre>";
-//							print_r ($detail);
-//							echo "</pre>";die;
+							//							echo "<pre>";
+							//							print_r ($detail);
+							//							echo "</pre>";die;
 							$no = 1;
 							$jumlahSemuanya = 0;
 							foreach ($faktor as $key => $value):
@@ -477,28 +477,37 @@
 									<td><?= $value['faktor_nama'] ?></td>
 									<td>
 										<?php
-										$nilai = null;
+										$nilaidosen = null;
+										$nilaimhs = null;
 										if ($detail == null):
 											?>
 											Kuesioner belum diisi
 										<?php
 										else:
-											$hitungsemua = 0;
-											foreach ($detail as $key2=>$value2){
-												if ($value2['faktor_nama'] == $value['faktor_nama']){
-													$nilai += $value2['detail_jawaban'];
-													$hitungsemua++;
+											$hitungdosen = 0;
+											$hitungmhs = 0;
+											foreach ($detail as $key2 => $value2) {
+												if ($value2['faktor_nama'] == $value['faktor_nama']) {
+													if ($value2['kuesioner_jabatan'] == 'Dosen Pengajar') {
+														$nilaidosen += $value2['detail_jawaban'];
+														$hitungdosen++;
+													} elseif ($value2['kuesioner_jabatan'] == 'Mahasiswa') {
+														$nilaimhs += $value2['detail_jawaban'];
+														$hitungmhs++;
+													}
 												}
 											}
-											$rataSemua = $nilai/$hitungsemua;
-											$jumlahSemuanya+= $rataSemua;
-											echo round($rataSemua,2);
+											$ratadosen = $nilaidosen / $hitungdosen;
+											$ratamhs = $nilaimhs / $hitungmhs;
+											$rataSemua = ($ratadosen + $ratamhs) / 2;
+											$jumlahSemuanya += $rataSemua;
+											echo round($rataSemua, 2);
 										endif;
 										?>
 									</td>
 									<td>
 										<?php
-										if ($rataSemua/$nomor != null):
+										if ($rataSemua / $nomor != null):
 											echo kategori($rataSemua);
 										else: ?>
 											Kuesioner belum diisi
@@ -516,7 +525,7 @@
 							<tr>
 								<th colspan="2">Rata-rata</th>
 								<th><?php
-									echo round($jumlahSemuanya / ($no - 1),2);
+									echo round($jumlahSemuanya / ($no - 1), 2);
 									?></th>
 								<th colspan="1"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
 							</tr>
