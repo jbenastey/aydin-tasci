@@ -1,3 +1,4 @@
+
 <div class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
@@ -142,6 +143,7 @@
 											endforeach;
 											$jumlahSemuanya += ($rataRata / $nomor);
 											echo round($rataRata / $nomor, 2);
+											$rentangNilai[$value['faktor_nama']]['dosen'] = round($rataRata / $nomor, 2);
 										endif;
 										?>
 									</td>
@@ -310,6 +312,7 @@
 											endforeach;
 											$jumlahSemuanya += ($rataRata / $nomor);
 											echo round($rataRata / $nomor, 2);
+											$rentangNilai[$value['faktor_nama']]['mahasiswa'] = round($rataRata / $nomor, 2);
 										endif;
 										?>
 									</td>
@@ -486,19 +489,9 @@
 										else:
 											$hitungdosen = 0;
 											$hitungmhs = 0;
-											foreach ($detail as $key2 => $value2) {
-												if ($value2['faktor_nama'] == $value['faktor_nama']) {
-													if ($value2['kuesioner_jabatan'] == 'Dosen Pengajar') {
-														$nilaidosen += $value2['detail_jawaban'];
-														$hitungdosen++;
-													} elseif ($value2['kuesioner_jabatan'] == 'Mahasiswa') {
-														$nilaimhs += $value2['detail_jawaban'];
-														$hitungmhs++;
-													}
-												}
-											}
-											$ratadosen = $nilaidosen / $hitungdosen;
-											$ratamhs = $nilaimhs / $hitungmhs;
+
+											$ratadosen = $rentangNilai[$value['faktor_nama']]['dosen'];
+											$ratamhs = $rentangNilai[$value['faktor_nama']]['mahasiswa'];
 											$rataSemua = ($ratadosen + $ratamhs) / 2;
 											$jumlahSemuanya += $rataSemua;
 											echo round($rataSemua, 2);
