@@ -13,7 +13,17 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1 class="m-0 text-dark">Detail Laporan <?= ucfirst($responden) ?></h1>
+				<?php
+				if ($responden == 'semua'):
+					?>
+					<h1 class="m-0 text-dark">Detail Semua Laporan</h1>
+				<?php
+				else:
+					?>
+					<h1 class="m-0 text-dark">Detail Laporan <?= ucfirst($responden) ?></h1>
+				<?php
+				endif
+				?>
 			</div><!-- /.col -->
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
@@ -40,149 +50,295 @@
 								<table class="table table-bordered" id="excel">
 									<?php
 									if ($responden != 'ptipd'):
-										?>
-										<thead class="text-center">
-										<tr>
-											<th rowspan="2">Nomor</th>
-											<th rowspan="2">Pertanyaan</th>
-											<th colspan="8">Fakultas</th>
-											<th rowspan="2">Nilai</th>
-											<th rowspan="2">Rata-rata</th>
-											<th rowspan="2">Keterangan</th>
-										</tr>
-										<tr>
-											<th>FST</th>
-											<th>FSH</th>
-											<th>FTK</th>
-											<th>FUD</th>
-											<th>FDK</th>
-											<th>FPP</th>
-											<th>FES</th>
-											<th>FPS</th>
-										</tr>
-										</thead>
-										<tbody>
-										<?php
-										$no = 1;
-										$jumlahSemua = 0;
-										$rataRata = 0;
-										foreach ($pertanyaan as $key => $value):
-											if ($value['pertanyaan_faktor_id'] == $value0['faktor_id']) {
-												if ($value['pertanyaan_jenis'] == $responden):
-													?>
-													<tr>
-														<td><?= $no ?></td>
-														<td><?= $value['pertanyaan_isi'] ?></td>
-														<?php
-														$nilai = 0;
-														$hitung = 0;
-														$fst = 0;
-														$fstTotal = 0;
-														$fsh = 0;
-														$fshTotal = 0;
-														$ftk = 0;
-														$ftkTotal = 0;
-														$fud = 0;
-														$fudTotal = 0;
-														$fdk = 0;
-														$fdkTotal = 0;
-														$fpp = 0;
-														$fppTotal = 0;
-														$fes = 0;
-														$fesTotal = 0;
-														$fps = 0;
-														$fpsTotal = 0;
-														foreach ($jawaban as $key2 => $value2):
-															if ($value['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
-																if ($value2['kuesioner_fakultas'] == 'fst') {
-																	$fstTotal += $value2['detail_jawaban'];
-																	$fst++;
-																	if ($fst == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'fasih') {
-																	$fshTotal += $value2['detail_jawaban'];
-																	$fsh++;
-																	if ($fsh == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'ftk') {
-																	$ftkTotal += $value2['detail_jawaban'];
-																	$ftk++;
-																	if ($ftk == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'fud') {
-																	$fudTotal += $value2['detail_jawaban'];
-																	$fud++;
-																	if ($fud == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'fdk') {
-																	$fdkTotal += $value2['detail_jawaban'];
-																	$fdk++;
-																	if ($fdk == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'fapertapet') {
-																	$fppTotal += $value2['detail_jawaban'];
-																	$fpp++;
-																	if ($fpp == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'fekonsos') {
-																	$fesTotal += $value2['detail_jawaban'];
-																	$fes++;
-																	if ($fes == 1) {
-																		$hitung++;
-																	}
-																} elseif ($value2['kuesioner_fakultas'] == 'fpsi') {
-																	$fpsTotal += $value2['detail_jawaban'];
-																	$fps++;
-																	if ($fps == 1) {
-																		$hitung++;
-																	}
-																}
-															endif;
-														endforeach;
+										if ($responden == 'semua'):
+											?>
+											<thead class="text-center">
+											<tr>
+												<th rowspan="2">Nomor</th>
+												<th rowspan="2">Responden</th>
+												<th rowspan="2">Pertanyaan</th>
+												<th colspan="8">Fakultas</th>
+												<th rowspan="2">Nilai</th>
+												<th rowspan="2">Rata-rata</th>
+												<th rowspan="2">Keterangan</th>
+											</tr>
+											<tr>
+												<th>FST</th>
+												<th>FSH</th>
+												<th>FTK</th>
+												<th>FUD</th>
+												<th>FDK</th>
+												<th>FPP</th>
+												<th>FES</th>
+												<th>FPS</th>
+											</tr>
+											</thead>
+											<tbody>
+											<?php
+											$no = 1;
+											$jumlahSemua = 0;
+											$rataRata = 0;
+											foreach ($pertanyaan as $key => $value):
+												if ($value['pertanyaan_faktor_id'] == $value0['faktor_id']) {
 														?>
-														<td><?= isNan(round($fstTotal / $fst, 2)) ?></td>
-														<td><?= isNan(round($fshTotal / $fsh, 2)) ?></td>
-														<td><?= isNan(round($ftkTotal / $ftk, 2)) ?></td>
-														<td><?= isNan(round($fudTotal / $fud, 2)) ?></td>
-														<td><?= isNan(round($fdkTotal / $fdk, 2)) ?></td>
-														<td><?= isNan(round($fppTotal / $fpp, 2)) ?></td>
-														<td><?= isNan(round($fesTotal / $fes, 2)) ?></td>
-														<td><?= isNan(round($fpsTotal / $fps, 2)) ?></td>
-														<td><?= round($nilai = isNan(($fstTotal / $fst)) +
-																isNan(($fshTotal / $fsh)) +
-																isNan(($ftkTotal / $ftk)) +
-																isNan(($fudTotal / $fud)) +
-																isNan(($fdkTotal / $fdk)) +
-																isNan(($fppTotal / $fpp)) +
-																isNan(($fesTotal / $fes)) +
-																isNan(($fpsTotal / $fps)), 2) ?></td>
-														<td><?= round($rata = $nilai / $hitung, 2) ?></td>
-														<td><?= kategori($rata) ?></td>
-													</tr>
-													<?php
-													$no++;
-													$jumlahSemua += $nilai;
-													$rataRata += $rata;
-												endif;
-											}
-										endforeach;
-										?>
-										</tbody>
-										<tfoot>
-										<tr>
-											<th colspan="10">Total</th>
-											<th><?= round($jumlahSemua, 2) ?></th>
-											<th><?= round($rataRata / ($no - 1), 2) ?></th>
-											<th><?= kategori($rataRata / ($no - 1)) ?></th>
-										</tr>
-										</tfoot>
-									<?php
+														<tr>
+															<td><?= $no ?></td>
+															<td><?= $value['pertanyaan_jenis'] ?></td>
+															<td><?= $value['pertanyaan_isi'] ?></td>
+															<?php
+															$nilai = 0;
+															$hitung = 0;
+															$fst = 0;
+															$fstTotal = 0;
+															$fsh = 0;
+															$fshTotal = 0;
+															$ftk = 0;
+															$ftkTotal = 0;
+															$fud = 0;
+															$fudTotal = 0;
+															$fdk = 0;
+															$fdkTotal = 0;
+															$fpp = 0;
+															$fppTotal = 0;
+															$fes = 0;
+															$fesTotal = 0;
+															$fps = 0;
+															$fpsTotal = 0;
+															foreach ($jawaban as $key2 => $value2):
+																if ($value['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
+																	if ($value2['kuesioner_fakultas'] == 'fst') {
+																		$fstTotal += $value2['detail_jawaban'];
+																		$fst++;
+																		if ($fst == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fasih') {
+																		$fshTotal += $value2['detail_jawaban'];
+																		$fsh++;
+																		if ($fsh == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'ftk') {
+																		$ftkTotal += $value2['detail_jawaban'];
+																		$ftk++;
+																		if ($ftk == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fud') {
+																		$fudTotal += $value2['detail_jawaban'];
+																		$fud++;
+																		if ($fud == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fdk') {
+																		$fdkTotal += $value2['detail_jawaban'];
+																		$fdk++;
+																		if ($fdk == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fapertapet') {
+																		$fppTotal += $value2['detail_jawaban'];
+																		$fpp++;
+																		if ($fpp == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fekonsos') {
+																		$fesTotal += $value2['detail_jawaban'];
+																		$fes++;
+																		if ($fes == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fpsi') {
+																		$fpsTotal += $value2['detail_jawaban'];
+																		$fps++;
+																		if ($fps == 1) {
+																			$hitung++;
+																		}
+																	}
+																endif;
+															endforeach;
+															?>
+															<td><?= isNan(round($fstTotal / $fst, 2)) ?></td>
+															<td><?= isNan(round($fshTotal / $fsh, 2)) ?></td>
+															<td><?= isNan(round($ftkTotal / $ftk, 2)) ?></td>
+															<td><?= isNan(round($fudTotal / $fud, 2)) ?></td>
+															<td><?= isNan(round($fdkTotal / $fdk, 2)) ?></td>
+															<td><?= isNan(round($fppTotal / $fpp, 2)) ?></td>
+															<td><?= isNan(round($fesTotal / $fes, 2)) ?></td>
+															<td><?= isNan(round($fpsTotal / $fps, 2)) ?></td>
+															<td><?= round($nilai = isNan(($fstTotal / $fst)) +
+																	isNan(($fshTotal / $fsh)) +
+																	isNan(($ftkTotal / $ftk)) +
+																	isNan(($fudTotal / $fud)) +
+																	isNan(($fdkTotal / $fdk)) +
+																	isNan(($fppTotal / $fpp)) +
+																	isNan(($fesTotal / $fes)) +
+																	isNan(($fpsTotal / $fps)), 2) ?></td>
+															<td><?= round($rata = $nilai / $hitung, 2) ?></td>
+															<td><?= kategori($rata) ?></td>
+														</tr>
+														<?php
+														$no++;
+														$jumlahSemua += $nilai;
+														$rataRata += $rata;
+												}
+											endforeach;
+											?>
+											</tbody>
+											<tfoot>
+											<tr>
+												<th colspan="11">Total</th>
+												<th><?= round($jumlahSemua, 2) ?></th>
+												<th><?= round($rataRata / ($no - 1), 2) ?></th>
+												<th><?= kategori($rataRata / ($no - 1)) ?></th>
+											</tr>
+											</tfoot>
+										<?php
+										else:
+											?>
+											<thead class="text-center">
+											<tr>
+												<th rowspan="2">Nomor</th>
+												<th rowspan="2">Pertanyaan</th>
+												<th colspan="8">Fakultas</th>
+												<th rowspan="2">Nilai</th>
+												<th rowspan="2">Rata-rata</th>
+												<th rowspan="2">Keterangan</th>
+											</tr>
+											<tr>
+												<th>FST</th>
+												<th>FSH</th>
+												<th>FTK</th>
+												<th>FUD</th>
+												<th>FDK</th>
+												<th>FPP</th>
+												<th>FES</th>
+												<th>FPS</th>
+											</tr>
+											</thead>
+											<tbody>
+											<?php
+											$no = 1;
+											$jumlahSemua = 0;
+											$rataRata = 0;
+											foreach ($pertanyaan as $key => $value):
+												if ($value['pertanyaan_faktor_id'] == $value0['faktor_id']) {
+													if ($value['pertanyaan_jenis'] == $responden):
+														?>
+														<tr>
+															<td><?= $no ?></td>
+															<td><?= $value['pertanyaan_isi'] ?></td>
+															<?php
+															$nilai = 0;
+															$hitung = 0;
+															$fst = 0;
+															$fstTotal = 0;
+															$fsh = 0;
+															$fshTotal = 0;
+															$ftk = 0;
+															$ftkTotal = 0;
+															$fud = 0;
+															$fudTotal = 0;
+															$fdk = 0;
+															$fdkTotal = 0;
+															$fpp = 0;
+															$fppTotal = 0;
+															$fes = 0;
+															$fesTotal = 0;
+															$fps = 0;
+															$fpsTotal = 0;
+															foreach ($jawaban as $key2 => $value2):
+																if ($value['pertanyaan_id'] == $value2['detail_pertanyaan_id']):
+																	if ($value2['kuesioner_fakultas'] == 'fst') {
+																		$fstTotal += $value2['detail_jawaban'];
+																		$fst++;
+																		if ($fst == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fasih') {
+																		$fshTotal += $value2['detail_jawaban'];
+																		$fsh++;
+																		if ($fsh == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'ftk') {
+																		$ftkTotal += $value2['detail_jawaban'];
+																		$ftk++;
+																		if ($ftk == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fud') {
+																		$fudTotal += $value2['detail_jawaban'];
+																		$fud++;
+																		if ($fud == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fdk') {
+																		$fdkTotal += $value2['detail_jawaban'];
+																		$fdk++;
+																		if ($fdk == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fapertapet') {
+																		$fppTotal += $value2['detail_jawaban'];
+																		$fpp++;
+																		if ($fpp == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fekonsos') {
+																		$fesTotal += $value2['detail_jawaban'];
+																		$fes++;
+																		if ($fes == 1) {
+																			$hitung++;
+																		}
+																	} elseif ($value2['kuesioner_fakultas'] == 'fpsi') {
+																		$fpsTotal += $value2['detail_jawaban'];
+																		$fps++;
+																		if ($fps == 1) {
+																			$hitung++;
+																		}
+																	}
+																endif;
+															endforeach;
+															?>
+															<td><?= isNan(round($fstTotal / $fst, 2)) ?></td>
+															<td><?= isNan(round($fshTotal / $fsh, 2)) ?></td>
+															<td><?= isNan(round($ftkTotal / $ftk, 2)) ?></td>
+															<td><?= isNan(round($fudTotal / $fud, 2)) ?></td>
+															<td><?= isNan(round($fdkTotal / $fdk, 2)) ?></td>
+															<td><?= isNan(round($fppTotal / $fpp, 2)) ?></td>
+															<td><?= isNan(round($fesTotal / $fes, 2)) ?></td>
+															<td><?= isNan(round($fpsTotal / $fps, 2)) ?></td>
+															<td><?= round($nilai = isNan(($fstTotal / $fst)) +
+																	isNan(($fshTotal / $fsh)) +
+																	isNan(($ftkTotal / $ftk)) +
+																	isNan(($fudTotal / $fud)) +
+																	isNan(($fdkTotal / $fdk)) +
+																	isNan(($fppTotal / $fpp)) +
+																	isNan(($fesTotal / $fes)) +
+																	isNan(($fpsTotal / $fps)), 2) ?></td>
+															<td><?= round($rata = $nilai / $hitung, 2) ?></td>
+															<td><?= kategori($rata) ?></td>
+														</tr>
+														<?php
+														$no++;
+														$jumlahSemua += $nilai;
+														$rataRata += $rata;
+													endif;
+												}
+											endforeach;
+											?>
+											</tbody>
+											<tfoot>
+											<tr>
+												<th colspan="10">Total</th>
+												<th><?= round($jumlahSemua, 2) ?></th>
+												<th><?= round($rataRata / ($no - 1), 2) ?></th>
+												<th><?= kategori($rataRata / ($no - 1)) ?></th>
+											</tr>
+											</tfoot>
+										<?php
+										endif;
 									else:
 										?>
 										<thead class="text-center">
@@ -240,7 +396,7 @@
 										</tr>
 										</tfoot>
 									<?php
-									endif
+									endif;
 									?>
 								</table>
 							</div>

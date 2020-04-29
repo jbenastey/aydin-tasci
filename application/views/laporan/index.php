@@ -528,7 +528,12 @@
 								<th><?php
 									echo round($jumlahSemuanya / ($no - 1), 2);
 									?></th>
-								<th colspan="1"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+								<th colspan="1"><?= kategori($jumlahSemuanya / ($no - 1)) ?>
+									<a href="<?= base_url('laporan/semua-detail/semua') ?>"
+									   class="btn btn-primary btn-sm float-right" title="Lihat Detail"> <i
+											class="fa fa-eye"></i>
+									</a>
+								</th>
 							</tr>
 							</tfoot>
 						</table>
