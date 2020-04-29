@@ -177,7 +177,11 @@
 								<th><?php
 									echo round($jumlahSemuanya / ($no - 1), 2);
 									?></th>
-								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+								<th><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+								<th><a href="<?= base_url('laporan/semua-detail/dosen') ?>"
+									   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
+											class="fa fa-eye"></i>
+									</a></th>
 							</tr>
 							</tfoot>
 						</table>
@@ -345,7 +349,11 @@
 								<th><?php
 									echo round($jumlahSemuanya / ($no - 1), 2);
 									?></th>
-								<th colspan="2"><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+								<th><?= kategori($jumlahSemuanya / ($no - 1)) ?></th>
+								<th><a href="<?= base_url('laporan/semua-detail/mahasiswa') ?>"
+									   class="btn btn-primary btn-sm" title="Lihat Detail"> <i
+											class="fa fa-eye"></i>
+									</a></th>
 							</tr>
 							</tfoot>
 						</table>

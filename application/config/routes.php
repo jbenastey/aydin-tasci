@@ -78,6 +78,7 @@ $route['pengguna/hapus/(:any)'] = 'AuthController/hapus/$1';
 
 $route['laporan'] = 'LaporanController/index';
 $route['laporan/detail/(:any)/(:any)'] = 'LaporanController/detail/$1/$2';
+$route['laporan/semua-detail/(:any)'] = 'LaporanController/semuaDetail/$1';
 
 $route['login'] = 'AuthController/login';
 $route['logout'] = 'AuthController/logout';

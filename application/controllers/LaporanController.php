@@ -44,4 +44,16 @@ class LaporanController extends CI_Controller
 		$this->load->view('laporan/detail', $data);
 		$this->load->view('templates/footer');
 	}
+
+	public function semuaDetail($responden){
+		$data = array(
+			'responden' => $responden,
+			'faktor'=> $this->faktor->lihat_semua(),
+			'pertanyaan'=> $this->pertanyaan->lihat_semua(),
+			'jawaban' => $this->kuesioner->lihat_semua_detail()
+		);
+		$this->load->view('templates/header');
+		$this->load->view('laporan/semua-detail', $data);
+		$this->load->view('templates/footer');
+	}
 }
